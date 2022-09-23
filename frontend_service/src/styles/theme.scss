@@ -1,0 +1,106 @@
+@use '@angular/material' as mat;
+
+$app-primary-palette: mat.define-palette(
+    (
+        50: #169ade,
+        100: #169ade,
+        200: #169ade,
+        300: #169ade,
+        400: #169ade,
+        500: #169ade,
+        600: #169ade,
+        700: #169ade,
+        800: #169ade,
+        900: #169ade,
+        A100: #169ade,
+        A200: #169ade,
+        A400: #169ade,
+        A700: #169ade,
+        contrast: (
+            50: #000000,
+            100: #000000,
+            200: #000000,
+            300: #000000,
+            400: #ffffff,
+            500: #ffffff,
+            600: #ffffff,
+            700: #ffffff,
+            800: #ffffff,
+            900: #ffffff,
+            A100: #000000,
+            A200: #000000,
+            A400: #ffffff,
+            A700: #ffffff
+        )
+    )
+);
+$app-accent-palette: mat.define-palette(
+    (
+        50: #9ade16,
+        100: #9ade16,
+        200: #9ade16,
+        300: #9ade16,
+        400: #9ade16,
+        500: #9ade16,
+        600: #9ade16,
+        700: #9ade16,
+        800: #9ade16,
+        900: #9ade16,
+        A100: #9ade16,
+        A200: #9ade16,
+        A400: #9ade16,
+        A700: #9ade16,
+        contrast: (
+            50: #000000,
+            100: #000000,
+            200: #000000,
+            300: #000000,
+            400: #ffffff,
+            500: #ffffff,
+            600: #ffffff,
+            700: #ffffff,
+            800: #ffffff,
+            900: #ffffff,
+            A100: #000000,
+            A200: #000000,
+            A400: #ffffff,
+            A700: #ffffff
+        )
+    )
+);
+$app-warn-palette: mat.define-palette(
+    (
+        50: #ffebee,
+        100: #ffcdd2,
+        200: #ef9a9a,
+        300: #e57373,
+        400: #ef5350,
+        500: #f44336,
+        600: #e53935,
+        700: #d32f2f,
+        800: #c62828,
+        900: #b71c1c,
+        A100: #ff8a80,
+        A200: #ff5252,
+        A400: #ff1744,
+        A700: #d50000,
+        contrast: (
+            50: rgba(black, 0.87),
+            100: rgba(black, 0.87),
+            200: rgba(black, 0.87),
+            300: rgba(black, 0.87),
+            400: rgba(black, 0.87),
+            500: white,
+            600: white,
+            700: white,
+            800: white,
+            900: white,
+            A100: rgba(black, 0.87),
+            A200: white,
+            A400: white,
+            A700: white
+        )
+    )
+);
+
+$app-theme: mat.define-light-theme($app-primary-palette, $app-accent-palette, $app-warn-palette);

@@ -7,6 +7,6 @@ COPY ./block_configs/ /etc/block_configs
 COPY ./block_configs_local/ /etc/block_configs_local
 
 
-RUN if [[ "BUILD_TYPE"=="prod" ]] ;  \
+RUN if [[ "$BUILD_TYPE"=="prod" ]] ;  \
     then cp /etc/block_configs/* /etc/nginx/conf.d;  \
 else cp /etc/block_configs_local/* /etc/nginx/conf.d; fi

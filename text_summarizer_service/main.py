@@ -17,7 +17,6 @@ def send_response(id: str, summary: str, paper_count: int):
             logger.debug("response sending status: success")
         else:
             logger.debug(f"response sending status: failed ({response.status_code})")
-
     except Exception as e:
         logger.error(f"failed to send request to {SUMMARY_URL}: {e}")
 
@@ -40,7 +39,6 @@ def main():
         summary = get_summarization(f"{req['id']}-{req['term']}")
         logger.debug(f"summary = {summary}")
 
-        # TODO: get paper_count from pubmed API
         send_response(req['id'], summary, 42)
 
 

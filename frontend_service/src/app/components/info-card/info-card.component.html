@@ -3,8 +3,9 @@
     <mat-icon>{{getRandomIcon()}}</mat-icon>
   </div>
   <mat-card-content>
-    <mat-card-title>{{ item.generic_name }}</mat-card-title>
+    <mat-card-title>{{item.name}}</mat-card-title>
     <mat-card-subtitle> {{ item.country }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ item.generic_name }}</mat-card-subtitle>
     <mat-card-subtitle> {{ item.drug_class }}</mat-card-subtitle>
   </mat-card-content>
   <mat-card-actions class="right-align">

@@ -35,6 +35,8 @@
       .mat-card-title {
         font-size: 19px;
         margin-bottom: 0.7rem;
+        max-height: 37px;
+        overflow: hidden;
       }
 
       .mat-card-subtitle {

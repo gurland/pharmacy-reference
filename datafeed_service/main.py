@@ -15,12 +15,16 @@ r = Redis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
 
 
 if __name__ == '__main__':
-    while True:
-        r.lpush("summarization_tasks", json.dumps(
-            {
-                "id": ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10)),
-                "term": f"Drug {time.time()}"
-            }
-        ))
+    sleep_count = 0
 
-        time.sleep(60)
+    while True:
+        if sleep_count % 60 == 0:
+            r.lpush("summarization_tasks", json.dumps(
+                {
+                    "id": ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10)),
+                    "term": f"Drug {time.time()}"
+                }
+            ))
+
+        time.sleep(1)
+        sleep_count += 1

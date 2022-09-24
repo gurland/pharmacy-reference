@@ -1,7 +1,9 @@
 import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { ComponentsModule } from "../components/components.module";
 import { CommonService } from "../services/common.service";
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router'
 import { IndexComponent } from "./index/index.component";
 import { AuthorizationComponent } from './authorization/authorization.component';
@@ -29,7 +31,12 @@ import { MatRadioModule } from '@angular/material/radio';
         MatRadioModule,
         RouterModule
     ],
-    declarations: [IndexComponent, AuthorizationComponent],
+    declarations: [IndexComponent, 
+        AuthorizationComponent,
+        ComponentsModule,
+        BrowserModule,
+        MatDialogModule
+    ],
     providers: [CommonService],
     exports: [IndexComponent]
 })

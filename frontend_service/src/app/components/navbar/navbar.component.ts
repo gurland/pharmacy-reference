@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
+import { SearchModalComponent } from './search-modal/search-modal.component';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  searchForm;
+
+  constructor(
+    private readonly searchDialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
   }
 
+  openSearchModal(): void {
+    this.searchDialog.open(SearchModalComponent, {
+      data: {
+        searchInput: '123'
+      },
+      panelClass: 'search-modal'
+    });
+  }
 }

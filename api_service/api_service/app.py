@@ -23,9 +23,8 @@ def create_app() -> connexion.App:
     #     app.app,
     # )
 
-
     @app.app.after_request
-    def shutdown_session():
+    def shutdown_session(*args):
         db.close()
 
     logging.debug(f"RDS: {DATABASE_URI}")

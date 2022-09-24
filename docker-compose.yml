@@ -35,3 +35,8 @@ services:
     build: ./datafeed_service/
     env_file:
       - .env
+
+  api_service:
+    build: ./api_service/
+    env_file:
+      - .env

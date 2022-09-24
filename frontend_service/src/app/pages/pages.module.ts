@@ -16,6 +16,7 @@ import { IndexComponent } from "./index/index.component";
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { UserService } from "../services/user.service";
 import { TokenService } from "../services/token.service";
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
     imports: [
@@ -38,11 +39,13 @@ import { TokenService } from "../services/token.service";
     declarations: [
         IndexComponent, 
         AuthorizationComponent,
+        ProfileComponent,
     ],
     providers: [
         CommonService,
         UserService,
-        TokenService
+        TokenService,
+        ProfileComponent
     ],
     exports: [IndexComponent]
 })

@@ -13,4 +13,8 @@ export class TokenService {
   getToken(model) {
     return this.http.post('tokens', model);
   }
+
+  validateToken() {
+    return this.http.get('tokens');
+  }
 }

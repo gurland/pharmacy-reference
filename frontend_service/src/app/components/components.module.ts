@@ -7,13 +7,15 @@ import { MatCardModule } from '@angular/material/card';
 import { SearchModalComponent } from "./navbar/search-modal/search-modal.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { InfoCardComponent } from "./info-card/info-card.component";
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   imports: [
     CommonModule,
     MatIconModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    RouterModule
   ],
   declarations: [NavbarComponent, SearchModalComponent, InfoCardComponent],
   providers: [],

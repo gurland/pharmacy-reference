@@ -11,7 +11,7 @@ def mht_to_utf():
     return {
         "UTFContent": requests.get(
             body.get("url")
-        ).content.decode()
+        ).content.decode("cp1251")
     }
 
 

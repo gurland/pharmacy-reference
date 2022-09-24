@@ -8,6 +8,7 @@ import { SearchModalComponent } from "./navbar/search-modal/search-modal.compone
 import { NavbarComponent } from "./navbar/navbar.component";
 import { InfoCardComponent } from "./info-card/info-card.component";
 import { RouterModule } from "@angular/router";
+import { ShoppingListComponent } from "../shopping-list/shopping-list.component";
 
 @NgModule({
   imports: [
@@ -15,10 +16,11 @@ import { RouterModule } from "@angular/router";
     MatIconModule,
     ReactiveFormsModule,
     MatCardModule,
-    RouterModule
+    RouterModule,
+    
   ],
-  declarations: [NavbarComponent, SearchModalComponent, InfoCardComponent],
+  declarations: [NavbarComponent, SearchModalComponent, InfoCardComponent, ShoppingListComponent],
   providers: [],
-  exports: [NavbarComponent, InfoCardComponent]
+  exports: [NavbarComponent, InfoCardComponent, ShoppingListComponent]
 })
 export class ComponentsModule {}

@@ -36,7 +36,7 @@ services:
     env_file:
       - .env
 
-  api_service:
+  api:
     build: ./api_service/
     env_file:
       - .env

@@ -1,0 +1,43 @@
+@import '../../../styles/variables.scss';
+
+:host {
+    .auth-page {
+        display: flex;
+    }
+
+    .space-around {
+        justify-content: space-around;
+    }
+
+    mat-radio-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin: 0.7rem 0;
+    }
+
+    .card {
+        margin: auto;
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    h2 {
+        text-align: center;
+    }
+    a {
+        margin: 0.7rem 0 0 0;
+        color: $darkBlue !important;
+    }
+    mat-form-field {
+        width: 25vw;
+    }
+
+    button {
+        background-color: $purple  !important;
+    }
+}

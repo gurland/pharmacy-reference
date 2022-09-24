@@ -6,10 +6,6 @@ from xml.dom.minidom import parseString, Node
 from settings import PUBMED_SEARCH_URL, PUBMED_FETCH_URL, logger
 
 
-def prepare_input(input: str) -> str:
-    return input
-
-
 def get_articles_id_from_term(term: str) -> tuple[list,int]|None:
     """
     Send GET request to PubMed to search by term to get number of articles, list of id of articles
@@ -52,7 +48,7 @@ def get_abstract_by_id(article_id: str) -> str|None:
         return None
 
 
-def parse_abstracts_to_list(abstracts_list) -> list[str]|None:
+def parse_abstracts_to_list(abstracts_list: list) -> list[str]|None:
     """
     Parsing results from PubMed XML to list of strings
     """

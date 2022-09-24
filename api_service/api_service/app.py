@@ -19,9 +19,9 @@ def create_app() -> connexion.App:
         base_path="/api",
         strict_validation=True,
     )
-    CORS(
-        app.app,
-    )
+    # CORS(
+    #     app.app,
+    # )
 
     @app.app.teardown_appcontext
     def shutdown_session(*args, **kwargs) -> None:

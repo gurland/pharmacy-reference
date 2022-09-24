@@ -50,7 +50,7 @@ services:
     env_file:
       - .env
 
-    summarizer:
+  summarizer:
     build: ./text_summarizer_service
     env_file:
       - .env

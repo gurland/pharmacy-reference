@@ -16,6 +16,9 @@ tags:
     description: Heartbeat route
   - name: Users
     description: Information about the API users.
+  - name: Summarizations
+    description: Summarization info about generic drug.
+
 components:
   securitySchemes:
     bearerAuth:
@@ -52,7 +55,7 @@ components:
         password:
           type: string
           description: User's password.
-        isDoctor:
+        is_doctor:
           type: boolean
           description: Is User a doctor?
 
@@ -63,13 +66,31 @@ components:
           type: string
           description: Access JWT Token.
 
-security:
-  - bearerAuth: []
+    Summarization:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of Summarization.
+        drugId:
+          type: string
+          description: ID of the drug
+        text:
+          type: string
+          description: Summary text
+        paperCount:
+          type: integer
+          description: Count of papers related to the drug_id search request
+
+      example:
+        id: 12
+        drugId: 018DF2543374D301C22587500023AB7B
+        text: Amoxicillin and beta-lactamase inhibitor is good.
+        paper_count: 300
 
 paths:
   /:
     get:
-      security: []
       tags:
         - Info
       description: Heartbeat endpoint for health checks.
@@ -84,7 +105,6 @@ paths:
                 name: api_server
   /users:
     post:
-      security: []
       tags:
         - Users
       summary: Create new User.
@@ -158,6 +178,23 @@ paths:
                   there is an error in the application.
 
   "/tokens":
+    get:
+      security:
+        - bearerAuth: []
+
+      responses:
+        "200":
+          description: Token is valid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  test:
+                    type: string
+        "401":
+          description: Unauthorized
+
     post:
       tags:
         - Users
@@ -198,3 +235,63 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
               example:
                 message: Wrong Auth credentials
+
+  "/summarizations":
+    get:
+      tags:
+        - Summarizations
+
+      responses:
+        "200":
+          description: Summarization texts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Summarization"
+        "401":
+          description: Unauthorized
+
+    post:
+      tags:
+        - Summarizations
+
+      summary: Create a new Summarization.
+      requestBody:
+        description: Summarization's info
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Summarization'
+
+      responses:
+        "200":
+          description: Returns Summarization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Summarization'
+
+        "400":
+          description: Wrong request. See response content for details.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                message: Detailed information about error.
+        "401":
+          description: Authentication information is missing or invalid.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                message: Wrong Auth credentials
+

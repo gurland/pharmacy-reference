@@ -1,4 +1,5 @@
 import jwt
+from flask import request
 
 from api_service.models import User
 from api_service.settings import SECRET
@@ -24,3 +25,7 @@ def post(body):
         return {"access_token": encoded_jwt}
     else:
         return {"message": "User password is incorrect"}, 401
+
+
+def search():
+    return {"test": request.headers.get("Authorization")}

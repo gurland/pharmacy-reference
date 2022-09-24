@@ -1,0 +1,10 @@
+
+<form [formGroup]="searchForm">
+    <div class="form-field search">
+        <mat-icon>search</mat-icon>
+        <input [formControlName]="'input'" class="search-input" placeholder="Enter your text">
+        <button *ngIf="searchInputControl?.value" (click)="clearSearchInput()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</form>

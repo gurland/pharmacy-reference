@@ -104,3 +104,8 @@ $app-warn-palette: mat.define-palette(
 );
 
 $app-theme: mat.define-light-theme($app-primary-palette, $app-accent-palette, $app-warn-palette);
+
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+}

@@ -1,0 +1,26 @@
+@import '../../../styles/variables.scss';
+
+:host {
+  .mat-card {
+    background-color: $purple_2;
+    border-radius: 10px;
+    box-shadow: initial;
+
+    .mat-card-content {
+      .mat-card-title {
+        font-size: 19px;
+      }
+      .mat-card-subtitle {
+        font-size: 14px;
+      }
+    }
+    .mat-card-actions {
+      padding: 5px 10px 13px;
+
+      button {
+        color: $purple;
+        font-size: 17px;
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ from connexion.resolver import RestyResolver
 import logging
 from flask_cors import CORS
 
-from models.base import db, DATABASE_URI
+from api_service.models.base import db, DATABASE_URI
 
 
 def create_app() -> connexion.App:

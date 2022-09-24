@@ -10,7 +10,7 @@ def initialize_model():
     pass
 
 
-def summarize(text: str) -> str|None:
+def run_summarization(text: str) -> str|None:
     """
     Runs neural web model to get abstract summary
     TODO: implement
@@ -22,11 +22,9 @@ def summarize(text: str) -> str|None:
 def get_summarization(input: str) -> str|None:
     """Gets on input prepared text from pubmed module"""
 
-    prepared_input = pubmed.prepare_input(input)
-
-    summary = summarize(prepared_input)
+    summary = run_summarization(input)
     if summary == None:
-        logger.debug("sending stub summary")
+        logger.debug("generating stub summary")
         return f"Some random summary from abstract for original text: {input}"
     else:
         logger.debug("NOT SUPPORTED")

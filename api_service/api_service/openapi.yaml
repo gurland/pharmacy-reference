@@ -18,6 +18,8 @@ tags:
     description: Information about the API users.
   - name: Summarizations
     description: Summarization info about generic drug.
+  - name: Drugs
+    description: Summarization info about generic drug.
 
 components:
   securitySchemes:
@@ -88,6 +90,9 @@ components:
         drugId: 018DF2543374D301C22587500023AB7B
         text: Amoxicillin and beta-lactamase inhibitor is good.
         paperCount: 300
+
+    Drug:
+      type: object
 
 paths:
   /:
@@ -295,3 +300,32 @@ paths:
               example:
                 message: Wrong Auth credentials
 
+  "/drugs":
+    get:
+      tags:
+        - Drugs
+
+      parameters:
+        - in: query
+          name: term
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 30
+          required: false
+
+      responses:
+        "200":
+          description: Registered in Ukraine Drugs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Drug"
+        "401":
+          description: Unauthorized

@@ -42,13 +42,13 @@ def main():
         req = json.loads(req[1].decode())
         logger.debug(f"id = {req['id']}, term = {req['term']}")
 
-        id_list = get_articles_id_from_term(req["term"])
+        id_list, paper_count = get_articles_id_from_term(req["term"])
         if id_list is None:
             logger.error(f"get_articles_id_from_term({req['term']}) returned empty result")
             # TBD: probably send error to API?
             continue
 
-        abstracts_list, paper_count = get_abstracts_by_multiple_ids(id_list)
+        abstracts_list = get_abstracts_by_multiple_ids(id_list)
         if abstracts_list is None:
             logger.error(f"get_abstracts_by_multiple_ids({id_list}) returned empty result")
             # TBD: probably send error to API?

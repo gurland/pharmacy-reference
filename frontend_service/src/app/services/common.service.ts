@@ -12,6 +12,6 @@ export class CommonService {
   ) { }
 
   getData() {
-    return this.http.get(`${this.url}/path`)
+    return this.http.post("mht/", {url: "http://www.drlz.com.ua/ibp/lz_www.nsf/id/B16D276FB489E0194225877A002BFA09/$file/UA64210101_20E3.mht"});
   }
 }

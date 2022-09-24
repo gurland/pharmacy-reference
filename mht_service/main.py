@@ -22,6 +22,11 @@ dictConfig({
 app = Flask(__name__)
 
 
+@app.route("/")
+def index():
+    return {"success": "success"}
+
+
 @app.route("/mht/", methods=["POST"])
 def mht_to_utf():
     body = request.json

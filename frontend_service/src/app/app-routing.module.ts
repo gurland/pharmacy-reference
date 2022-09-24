@@ -8,7 +8,7 @@ const routes: Routes = [
     component: IndexComponent
   },
   {
-    path: 'authorization/:param',
+    path: 'authorization/:page',
     component: AuthorizationComponent
   }
 ];

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import jwtDecode from 'jwt-decode';
+import { TokenService } from 'src/app/services/token.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-authorization',
@@ -12,31 +15,42 @@ export class AuthorizationComponent implements OnInit {
   authForm: FormGroup;
   authParam: string;
   roles: string[] = ['doctor', 'patient'];
-  constructor(public route: ActivatedRoute) {
 
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly userService: UserService,
+    private readonly tokenService: TokenService
+  ) {
+    this.authParam = this.route.snapshot.paramMap.get('page');
   }
 
   ngOnInit(): void {
     this.generateForm();
-    this.getAuthParameter();
   }
 
-  generateForm() {
+  private generateForm() {
     this.authForm = new FormGroup({
-      login: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      role: new FormControl('', Validators.required)
     });
-  }
 
-  loginButtonClick() {
-    if (this.authForm.valid) {
-      console.table(this.authForm.value);
+    if (this.authParam === 'register') {
+      this.authForm.addControl('isDoctor', new  FormControl(false));
     }
   }
-  getAuthParameter() {
-    this.route.paramMap.subscribe(params => {
-      this.authParam = params.get('param') || 'login';
-    });
+
+
+  submitForm(): void {
+    console.log(this.authParam);
+    if (this.authParam === 'register') {
+      this.userService.createUser(this.authForm.value).subscribe(newUserModel => {
+        this.tokenService.getToken({...newUserModel, password: this.authForm.get('password').value}).subscribe((token: any) => {
+          // console.log(jwtDecode(token.access_token));
+          localStorage.setItem('accessToken', JSON.stringify(token.access_token));
+        })
+      });
+    } else if (this.authParam === 'login') {
+
+    }
   }
 }

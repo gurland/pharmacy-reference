@@ -9,7 +9,13 @@ export class RequestInterceptor implements HttpInterceptor {
     constructor() {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const apiReq = request.clone({ url: environment.API_URL + request.url });
+        const token = localStorage.getItem('accessToken');
+        const apiReq = request.clone(
+            {
+              url: environment.API_URL + request.url,
+              setHeaders: token ? { Authorization: 'Bearer ' + token } : {}
+            },
+        );
         return next.handle(apiReq).pipe(
             tap((httpEvent: HttpEvent<any>) => {}),
             catchError((err: HttpErrorResponse) => {

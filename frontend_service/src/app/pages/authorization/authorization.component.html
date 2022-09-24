@@ -1,29 +1,27 @@
-<div class="auth-page column space-around">
-    <mat-card class="card">
-        <form class="example-form column" [formGroup]="authForm">
-            <h2>{{authParam | titlecase}}</h2>
-            <mat-form-field class="" appearance="fill">
-                <mat-label>Login</mat-label>
-                <input matInput formControlName="login">
-            </mat-form-field>
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Password</mat-label>
-                <input matInput formControlName="password" type="password">
-            </mat-form-field>
+<form class="example-form column" [formGroup]="authForm">
+    <h2>{{ authParam | titlecase }}</h2>
+    <mat-form-field class="" appearance="fill">
+        <mat-label>Login</mat-label>
+        <input matInput formControlName="username">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password">
+    </mat-form-field>
 
-            <div *ngIf="authParam == 'register'">
-                <mat-label>Choose your role:</mat-label>
-                <mat-radio-group aria-labelledby="example-radio-group-label" class="row center" formControlName="role">
-                    <mat-radio-button class="example-radio-button" *ngFor="let role of roles" [value]="role">
-                        {{role}}
-                    </mat-radio-button>
-                </mat-radio-group>
-            </div>
-            <button mat-raised-button color="primary" (click)="loginButtonClick()">{{authParam | titlecase}}</button>
-            <a *ngIf="authParam == 'register'" 
-            [routerLink]="['/authorization/login']" routerLinkActive="router-link-active" >Login</a>
-            <a *ngIf="authParam == 'login'"
-            [routerLink]="['/authorization/register']" routerLinkActive="router-link-active" >Register</a>
-        </form>
-    </mat-card>
-</div>
+    <div *ngIf="authParam == 'register'">
+        <mat-checkbox class="example-margin" formControlName="isDoctor">Are you a doctor?</mat-checkbox>
+    </div>
+
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="submitForm()"
+        [disabled]="!authForm.valid"
+    >{{authParam | titlecase}}</button>
+
+    <a *ngIf="authParam == 'register'" 
+    [routerLink]="['/authorization/login']" routerLinkActive="router-link-active" >Login</a>
+    <a *ngIf="authParam == 'login'"
+    [routerLink]="['/authorization/register']" routerLinkActive="router-link-active" >Register</a>
+</form>

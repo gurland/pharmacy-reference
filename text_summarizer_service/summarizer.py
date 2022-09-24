@@ -1,26 +1,50 @@
+from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 from settings import logger
-import pubmed
 
-def initialize_model():
+_tokenizer = None
+_model = None
+_pretrained_model_name = "google/pegasus-pubmed"
+
+def initialize_model() -> None:
     """
     Initializes neural web model
-    TODO: add all nessessary initialization
+    [?] TODO: add all nessessary initialization
     """
-    logger.debug("Initialized model")
-    pass
+
+    logger.debug("initializing tokenizer...")
+    _tokenizer = PegasusTokenizer.from_pretrained(_pretrained_model_name)
+    logger.debug("done.")
+
+    logger.debug("initializing mode...")
+    _model = PegasusForConditionalGeneration.from_pretrained(_pretrained_model_name)
+    logger.debug("done.")
+
+    logger.debug("initialization complete")
 
 
 def run_summarization(text: str) -> str|None:
     """
     Runs neural web model to get abstract summary
-    TODO: implement
-    TODO: run initialization of models when service starts
+    [?] TODO: implement
+    [x] TODO: run initialization of models when service starts
     """
-    return None
+
+    try:
+        tokens = _tokenizer(text, truncation=True, padding="longest", return_tensors="pt")
+        logger.info("tokenized input text")
+        prediction = _model.generate(**tokens)
+        logger.info("generated model")
+        result = _tokenizer.decode(prediction[0])
+        return result
+    except:
+        logger.error("an error occured when was running summarization")
+        return None
 
 
 def get_summarization(input: str) -> str|None:
-    """Gets on input prepared text from pubmed module"""
+    """
+    Gets on input prepared text from pubmed module
+    """
 
     summary = run_summarization(input)
     if summary == None:

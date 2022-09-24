@@ -13,6 +13,7 @@ services:
 
     volumes:
       - /etc/letsencrypt/archive/pharmaref.online/:/etc/nginx/certs/
+      - ./block_configs/*:/etc/nginx/conf.d
 
   frontend:
     build: ./frontend_service

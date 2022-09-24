@@ -1,10 +1,7 @@
 version: "3.9"
 services:
   nginx:
-    build:
-      context: ./nginx_service/
-      args:
-        BUILD_TYPE: local
+    build: ./nginx_service/
 
     ports:
       - "80:80"
@@ -16,6 +13,7 @@ services:
 
     volumes:
       - /etc/letsencrypt/archive/pharmaref.online/:/etc/nginx/certs/
+      - ./block_configs_local/*:/etc/nginx/conf.d
 
   frontend:
     build: ./frontend_service
@@ -47,3 +45,9 @@ services:
     depends_on:
       - db
       - redis
+
+
+  mht:
+    build: ./mht_service/
+    env_file:
+      - .env

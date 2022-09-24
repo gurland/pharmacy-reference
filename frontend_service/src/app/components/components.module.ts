@@ -10,6 +10,7 @@ import { InfoCardComponent } from "./info-card/info-card.component";
 import { RouterModule } from "@angular/router";
 import { PdfViewerModule } from "ng2-pdf-viewer";
 import { CardModalComponent } from "./info-card/card-modal/card-modal.component";
+import { ShoppingListComponent } from "../shopping-list/shopping-list.component";
 
 @NgModule({
   imports: [
@@ -20,8 +21,8 @@ import { CardModalComponent } from "./info-card/card-modal/card-modal.component"
     RouterModule,
     PdfViewerModule
   ],
-  declarations: [NavbarComponent, SearchModalComponent, InfoCardComponent, CardModalComponent],
+  declarations: [NavbarComponent, SearchModalComponent, InfoCardComponent, ShoppingListComponent, CardModalComponent],
   providers: [],
-  exports: [NavbarComponent, InfoCardComponent]
+  exports: [NavbarComponent, InfoCardComponent, ShoppingListComponent]
 })
 export class ComponentsModule {}

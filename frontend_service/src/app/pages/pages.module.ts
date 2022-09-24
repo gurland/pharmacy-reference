@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatIconModule} from '@angular/material/icon';
 
 import { ComponentsModule } from "../components/components.module";
 import { CommonService } from "../services/common.service";
@@ -34,7 +35,8 @@ import { ProfileComponent } from './profile/profile.component';
         MatRadioModule,
         RouterModule,
         MatDialogModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatIconModule
     ],
     declarations: [
         IndexComponent, 
@@ -45,7 +47,7 @@ import { ProfileComponent } from './profile/profile.component';
         CommonService,
         UserService,
         TokenService,
-        ProfileComponent
+        ProfileComponent,
     ],
     exports: [IndexComponent]
 })

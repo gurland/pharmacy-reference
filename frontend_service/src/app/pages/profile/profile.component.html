@@ -3,6 +3,7 @@
     <div class="row between">
         <label class="title">Username: {{user.username}}</label>
         <label class="title">Id: {{user.id}}</label>
+        <button mat-button class="accent sh-l" (click)="openShoppingList()">Shopping list <mat-icon>shopping_cart</mat-icon></button>
     </div>
 
     <mat-card class="head-card">
@@ -16,13 +17,4 @@
             <button mat-button color="accent" (click)="changeProfileData('password')">Change</button>
         </form>
     </mat-card>
-
-    <label class="title">Shopping list</label>
-    <mat-card class="position" *ngFor="let d of data">
-        <h3>{{d.dragName}}</h3>
-        <div class="description">
-            <p>Lorem ipsum</p>
-        </div>
-    </mat-card>
-
 </div>

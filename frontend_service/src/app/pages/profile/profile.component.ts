@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import jwtDecode from 'jwt-decode';
 import { TokenService } from 'src/app/services/token.service';
+import { MatDialog } from '@angular/material/dialog';
 import { User } from './userInterface';
+import { ShoppingListComponent } from 'src/app/shopping-list/shopping-list.component';
 
 @Component({
   selector: 'app-profile',
@@ -11,22 +13,9 @@ import { User } from './userInterface';
 export class ProfileComponent implements OnInit {
 
   user: User;
-  data = [
-    {
-      dragName: 'dragName1',
-      description: 'Description Description'
-    },
-    {
-      dragName: 'dragName2',
-      description: 'Description Description'
-    },
-    {
-      dragName: 'dragName3',
-      description: 'Description Description'
-    },
-  ]
   constructor(
     private readonly tokenService: TokenService,
+    private readonly dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +29,14 @@ export class ProfileComponent implements OnInit {
     console.table(this.user);
   }
 
-  changeProfileData(field: string){
-    
+  changeProfileData(field: string) {
+
+  }
+
+  openShoppingList() {
+    const dialogRef = this.dialog.open(ShoppingListComponent, {
+      height: '80vh', width: '80vw'
+    });
+
   }
 }

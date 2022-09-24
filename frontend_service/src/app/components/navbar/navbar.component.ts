@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ItemsService } from 'src/app/services/items.service';
 
+import { Router } from '@angular/router'
 import { SearchModalComponent } from './search-modal/search-modal.component';
 
 @Component({
@@ -16,7 +16,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private readonly searchDialog: MatDialog,
-    private readonly itemsService: ItemsService
+    private readonly itemsService: ItemsService,
+    private readonly router: Router
   ) { }
 
   ngOnInit(): void {}

@@ -1,1 +1,28 @@
-<p>profile works!</p>
+<app-navbar></app-navbar>
+<div class="profile">
+    <div class="row between">
+        <label class="title">Username: {{user.username}}</label>
+        <label class="title">Id: {{user.id}}</label>
+    </div>
+
+    <mat-card class="head-card">
+        <label class="title">Profile editing</label>
+        <form class="row between">
+            <div class="pe-text"><label>Username: {{user.username}}</label></div>
+            <button mat-button color="accent" (click)="changeProfileData('username')">Change</button>
+        </form>
+        <form class="row between">
+            <div class="pe-text"><label>Password: {{user.username}}</label></div>
+            <button mat-button color="accent" (click)="changeProfileData('password')">Change</button>
+        </form>
+    </mat-card>
+
+    <label class="title">Shopping list</label>
+    <mat-card class="position" *ngFor="let d of data">
+        <h3>{{d.dragName}}</h3>
+        <div class="description">
+            <p>Lorem ipsum</p>
+        </div>
+    </mat-card>
+
+</div>

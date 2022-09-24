@@ -1,0 +1,46 @@
+@import '../../..//styles/variables.scss';
+
+:host {
+    .profile {
+        width: 80vw;
+        margin: 2.5rem 0;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        margin: 0.5em 0;
+    }
+
+    .between {
+        justify-content: space-between;
+    }
+
+    .pe-text {
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+    }
+    h1 {
+        display: inline-block;
+        margin: 1rem 5rem 1rem 0;
+    }
+
+    .position {
+        margin: 1rem 0;
+    }
+
+    .title {
+        font-size: 24px;
+        display: block;
+        margin-bottom: 1.5rem;
+    }
+
+    .head-card {
+        margin-bottom: 5rem;
+        width: 50%;
+    }
+    button {
+        color: $purple;
+    }
+}

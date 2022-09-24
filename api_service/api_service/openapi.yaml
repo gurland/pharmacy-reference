@@ -445,7 +445,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Drug'
+              type: object
+              properties:
+                drugId:
+                  type: integer
+              example:
+                drugId: 6BEC590E29B0BDD1C22585FC00264396
+
 
       responses:
         "200":

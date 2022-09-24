@@ -5,10 +5,10 @@ from flask import request, g
 
 
 @jwt_required()
-def post(shopping_list_id, body):
+def post(shoppingListId, body):
     drug_id = body.get("drugId")
     drug = Drug.get(id=drug_id)
-    shopping_list = ShoppingList.get(id=shopping_list_id)
+    shopping_list = ShoppingList.get(id=shoppingListId)
     return ShoppingListDrug.create(
         drug=drug,
         shopping_list=shopping_list
@@ -16,6 +16,6 @@ def post(shopping_list_id, body):
 
 
 @jwt_required()
-def search(shopping_list_id):
-    shopping_list = ShoppingList.get(id=shopping_list_id)
-    return shopping_list.as_dict()
+def search(shoppingListId):
+    shopping_list = ShoppingList.get(id=shoppingListId)
+    return shopping_list.asdict().get("drugs", [])

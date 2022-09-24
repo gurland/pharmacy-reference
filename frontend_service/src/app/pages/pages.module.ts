@@ -29,13 +29,12 @@ import { MatRadioModule } from '@angular/material/radio';
         MatButtonModule,
         MatCardModule,
         MatRadioModule,
-        RouterModule
-    ],
-    declarations: [IndexComponent, 
-        AuthorizationComponent,
-        ComponentsModule,
-        BrowserModule,
+        RouterModule,
         MatDialogModule
+    ],
+    declarations: [
+        IndexComponent, 
+        AuthorizationComponent,
     ],
     providers: [CommonService],
     exports: [IndexComponent]

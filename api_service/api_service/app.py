@@ -16,7 +16,7 @@ def create_app() -> connexion.App:
     app.add_api(
         "openapi.yaml",
         resolver=RestyResolver("api_service.endpoints"),
-        base_path="/",
+        base_path="/api",
         strict_validation=True,
     )
     CORS(

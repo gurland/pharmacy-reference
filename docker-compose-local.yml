@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+  nginx:
+    build:
+      context: ./nginx_service/
+      args:
+        BUILD_TYPE: local
+
+    ports:
+      - "80:80"
+      - "443:443"
+
+    depends_on:
+      - frontend
+#      - api
+
+    volumes:
+      - /etc/letsencrypt/archive/pharmaref.online/:/etc/nginx/certs/
+
+  frontend:
+    build: ./frontend_service
+
+  redis:
+    image: redis
+  #    ports:
+  #    - "6379:6379"
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db_data/:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: portwontbeopened
+
+  datafeed:
+    build: ./datafeed_service/
+    env_file:
+      - .env
+
+  api:
+    build: ./api_service/
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis

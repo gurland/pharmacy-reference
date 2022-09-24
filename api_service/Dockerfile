@@ -1,6 +1,6 @@
 FROM python
 
-WORKDIR api_service
+WORKDIR /usr/local/bin/api_service
 
 COPY . .
 RUN pip3 install --no-cache-dir -r requirements.txt

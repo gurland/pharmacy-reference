@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
+import { Router } from '@angular/router'
 import { SearchModalComponent } from './search-modal/search-modal.component';
 
 @Component({
@@ -13,7 +13,8 @@ export class NavbarComponent implements OnInit {
   searchForm;
 
   constructor(
-    private readonly searchDialog: MatDialog
+    private readonly searchDialog: MatDialog,
+    private readonly router: Router
   ) { }
 
   ngOnInit(): void {
@@ -27,4 +28,5 @@ export class NavbarComponent implements OnInit {
       panelClass: 'search-modal'
     });
   }
+
 }

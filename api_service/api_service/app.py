@@ -23,9 +23,6 @@ def create_app() -> connexion.App:
     #     app.app,
     # )
 
-    @app.app.before_request
-    def before_request_callback():
-        db.connect()
 
     @app.app.after_request
     def shutdown_session():

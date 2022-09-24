@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ItemsService } from 'src/app/services/items.service';
 
 import { SearchModalComponent } from './search-modal/search-modal.component';
 
@@ -10,21 +12,30 @@ import { SearchModalComponent } from './search-modal/search-modal.component';
 })
 export class NavbarComponent implements OnInit {
 
-  searchForm;
+  searchInput = '';
 
   constructor(
-    private readonly searchDialog: MatDialog
+    private readonly searchDialog: MatDialog,
+    private readonly itemsService: ItemsService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   openSearchModal(): void {
-    this.searchDialog.open(SearchModalComponent, {
+    const dialogRef = this.searchDialog.open(SearchModalComponent, {
       data: {
-        searchInput: '123'
+        searchInput: this.searchInput
       },
       panelClass: 'search-modal'
     });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(result);
+    // });
   }
+
+  search(value): void {
+    this.itemsService.getItems(value.target.value).subscribe(items => {
+      this.itemsService.itemsList.next(items);
+    })
+  } 
 }

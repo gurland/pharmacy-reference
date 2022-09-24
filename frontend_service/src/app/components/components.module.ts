@@ -8,6 +8,8 @@ import { SearchModalComponent } from "./navbar/search-modal/search-modal.compone
 import { NavbarComponent } from "./navbar/navbar.component";
 import { InfoCardComponent } from "./info-card/info-card.component";
 import { RouterModule } from "@angular/router";
+import { PdfViewerModule } from "ng2-pdf-viewer";
+import { CardModalComponent } from "./info-card/card-modal/card-modal.component";
 
 @NgModule({
   imports: [
@@ -15,9 +17,10 @@ import { RouterModule } from "@angular/router";
     MatIconModule,
     ReactiveFormsModule,
     MatCardModule,
-    RouterModule
+    RouterModule,
+    PdfViewerModule
   ],
-  declarations: [NavbarComponent, SearchModalComponent, InfoCardComponent],
+  declarations: [NavbarComponent, SearchModalComponent, InfoCardComponent, CardModalComponent],
   providers: [],
   exports: [NavbarComponent, InfoCardComponent]
 })

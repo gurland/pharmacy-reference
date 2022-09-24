@@ -16,4 +16,12 @@ export class ItemsService {
   getItems(query) {
     return this.http.get('/drugs', { params: { term: query } } )
   }
+
+  getItemFile(url: string) {
+    return this.http.get('mht2/' + url, {responseType: 'blob', observe: 'response'});
+  }
+
+  getMht(url: string) {
+    return this.http.post("mht/", {url: url});
+  }
 }

@@ -19,6 +19,6 @@ export class InfoCardComponent implements OnInit {
   }
 
   openCardModal(data): void {
-    this.cardDialog.open(CardModalComponent, {panelClass: 'card-info-modal'});
+    this.cardDialog.open(CardModalComponent, { data, panelClass: 'card-info-modal' });
   }
 }

@@ -40,3 +40,6 @@ services:
     build: ./api_service/
     env_file:
       - .env
+    depends_on:
+      - db
+      - redis

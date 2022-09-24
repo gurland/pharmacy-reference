@@ -39,3 +39,5 @@ werkzeug==2.2.2; python_version >= "3.7"
 wrapt==1.14.1; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
 zipp==3.8.1; python_version < "3.9" and python_version >= "3.7"
 uwsgi
+bcrypt
+pyjwt

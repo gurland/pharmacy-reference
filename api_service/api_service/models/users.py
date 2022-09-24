@@ -1,26 +1,28 @@
 from peewee import *
+import bcrypt
+
 from .base import BaseModel
 
 
 class User(BaseModel):
-    username = CharField(unique=True)
+    username = CharField(unique=True, null=False)
     password_hash = CharField()
-    is_teacher = BooleanField(default=False)
+    is_doctor = BooleanField(default=False)
 
     def is_password_valid(self, password):
-        return self.password_hash == password
+        return bcrypt.checkpw(password, self.password_hash.encode())
 
     @staticmethod
-    def create_user(username, password, is_teacher):
-        return User(
+    def create_user(username, password, is_doctor):
+        return User.create(
             username=username,
-            password_hash=password,
-            is_teacher=is_teacher
+            password_hash=bcrypt.hashpw(password.encode(), bcrypt.gensalt()),
+            is_doctor=is_doctor
         )
 
-    def _asdict(self):
+    def asdict(self):
         return {
             "id": self.id,
             "username": self.username,
-            "isTeacher": self.is_teacher
+            "isDoctor": self.is_doctor
         }

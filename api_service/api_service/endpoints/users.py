@@ -1,17 +1,14 @@
-# our memory-only pet storage
-PETS = {}
+from api_service.models import User
+from peewee import IntegrityError
 
 
 def post(body):
-    return body
+    try:
+        return User.create_user(
+            body.get("username"),
+            body.get("password"),
+            body.get("isDoctor", False)
+        ).asdict()
 
-# exists = pet_id in PETS
-#     pet['id'] = pet_id
-#     if exists:
-#         logging.info('Updating pet %s..', pet_id)
-#         PETS[pet_id].update(pet)
-#     else:
-#         logging.info('Creating pet %s..', pet_id)
-#         pet['created'] = datetime.datetime.utcnow()
-#         PETS[pet_id] = pet
-#     return NoContent, (200 if exists else 201)
+    except IntegrityError:
+        return {"message": "User with this name already exists"}, 409

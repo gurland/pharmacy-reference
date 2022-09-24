@@ -52,7 +52,7 @@ components:
         password:
           type: string
           description: User's password.
-        is_doctor:
+        isDoctor:
           type: boolean
           description: Is User a doctor?
 
@@ -84,6 +84,7 @@ paths:
                 name: api_server
   /users:
     post:
+      security: []
       tags:
         - Users
       summary: Create new User.

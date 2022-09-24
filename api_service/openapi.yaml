@@ -63,13 +63,9 @@ components:
           type: string
           description: Access JWT Token.
 
-security:
-  - bearerAuth: []
-
 paths:
   /:
     get:
-      security: []
       tags:
         - Info
       description: Heartbeat endpoint for health checks.

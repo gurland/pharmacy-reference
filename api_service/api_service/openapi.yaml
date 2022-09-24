@@ -86,7 +86,7 @@ components:
         id: 12
         drugId: 018DF2543374D301C22587500023AB7B
         text: Amoxicillin and beta-lactamase inhibitor is good.
-        paper_count: 300
+        paperCount: 300
 
 paths:
   /:

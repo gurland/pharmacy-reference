@@ -11,7 +11,7 @@ def post(body):
     except User.DoesNotExist:
         return {"message": "User does not exist"}, 404
 
-    if user.is_password_valid(body.get("password")):
+    if user.is_password_valid(body.get("password").encode()):
         encoded_jwt = jwt.encode(
             {
                 "id": user.id,

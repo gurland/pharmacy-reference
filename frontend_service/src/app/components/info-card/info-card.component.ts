@@ -10,21 +10,19 @@ import { CardModalComponent } from './card-modal/card-modal.component';
 export class InfoCardComponent implements OnInit {
 
   icons: string[] = ['vaccines', 'bloodtype', 'masks', 'sanitizer', 'medical_information', 'medication'];
+  randIcon = this.icons[Math.floor(Math.random() * this.icons.length)];
   @Input() item = {} as any;
   
   constructor(
     private readonly cardDialog: MatDialog
-  ) { }
+  ) {
+    this.randIcon = this.icons[Math.floor(Math.random() * this.icons.length)];
+  }
 
   ngOnInit(): void {
   }
 
   openCardModal(data): void {
     this.cardDialog.open(CardModalComponent, { data, panelClass: 'card-info-modal' });
-  }
-
-  getRandomIcon(): string {
-    let icon = this.icons[Math.floor(Math.random() * this.icons.length)];
-    return icon;
   }
 }

@@ -50,3 +50,11 @@ services:
     build: ./mht_service/
     env_file:
       - .env
+
+    summarizer:
+    build: ./text_summarizer_service
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - api

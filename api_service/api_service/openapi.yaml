@@ -25,6 +25,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+      x-tokenInfoFunc: endpoints.auth.jwt
 
   schemas:
     HeartBeat:
@@ -55,7 +56,7 @@ components:
         password:
           type: string
           description: User's password.
-        is_doctor:
+        isDoctor:
           type: boolean
           description: Is User a doctor?
 

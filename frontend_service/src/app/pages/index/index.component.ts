@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-index',
@@ -24,10 +25,16 @@ export class IndexComponent implements OnInit {
       description: 'description'
     }
   ];
+  text = '';
 
   constructor(
+    private readonly commonService: CommonService
   ) { }
 
   ngOnInit(): void {
+    this.commonService.getData().subscribe((x: any) => {
+      console.log(x);
+      this.text = x.UTFContent;
+    });
   }
 }

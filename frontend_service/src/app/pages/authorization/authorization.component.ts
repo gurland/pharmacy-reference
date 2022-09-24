@@ -22,11 +22,14 @@ export class AuthorizationComponent implements OnInit {
     private readonly tokenService: TokenService,
     private readonly router: Router
   ) {
-    this.authParam = this.activatedRoute.snapshot.paramMap.get('page');
+    this.router.events.subscribe(() => {
+      this.authParam = this.activatedRoute.snapshot.paramMap.get('page');
+      this.generateForm();
+    })
   }
 
   ngOnInit(): void {
-    this.generateForm();
+    
   }
 
   private generateForm() {

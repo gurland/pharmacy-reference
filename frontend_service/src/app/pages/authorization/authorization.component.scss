@@ -1,43 +1,17 @@
 @import '../../../styles/variables.scss';
 
 :host {
-    .auth-page {
-        display: flex;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    .space-around {
-        justify-content: space-around;
-    }
-
-    mat-radio-group {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        margin: 0.7rem 0;
-    }
-
-    .card {
-        margin: auto;
-    }
-
-    .column {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    h2 {
-        text-align: center;
-    }
-    a {
-        margin: 0.7rem 0 0 0;
-        color: $darkBlue !important;
-    }
-    mat-form-field {
-        width: 25vw;
-    }
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
 
     button {
-        background-color: $purple  !important;
+        margin: 15px 0;
     }
+  }
 }

@@ -12,7 +12,6 @@ services:
 #      - api
 
     volumes:
-      - /etc/letsencrypt/archive/pharmaref.online/:/etc/nginx/certs/
       - ./block_configs_local/:/etc/nginx/conf.d/
 
   frontend:

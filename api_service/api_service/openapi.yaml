@@ -20,6 +20,8 @@ tags:
     description: Summarization info about generic drug.
   - name: Drugs
     description: Summarization info about generic drug.
+  - name: Shopping Lists
+    description: Shopping List related endpoints
 
 components:
   securitySchemes:
@@ -27,7 +29,6 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      x-tokenInfoFunc: api_service.endpoints.auth.jwt
 
   schemas:
     HeartBeat:
@@ -93,7 +94,21 @@ components:
 
     Drug:
       type: object
+      example: "{\n  \"components\": \"1 таблетка, вкрита оболонкою містить: 400 мг етамбутолу гідрохлориду, що відповідає вимогам Британської фармакопеї\",\n  \"country\": \"Нідерланди\",\n  \"drug_class\": \"Протитуберкульозні засоби.\",\n  \"form_factor\": \"таблетки, вкриті оболонкою, по 400 мг, по 1000 таблеток у банці пластиковій\",\n  \"generic_name\": \"Ethambutol\",\n  \"id\": \"F48D68E589D16390C2258869003A064D\",\n  \"instructuion_url\": \"http://www.drlz.com.ua/ibp/lz_www.nsf/id/D964E6C7F210426AC225886D00471901/$file/UA153730101_F48D.pdf\",\n  \"is_biologic\": false,\n  \"is_herbal\": false,\n  \"is_homeopaty\": false,\n  \"is_imunobiologic\": false,\n  \"is_recipe_needed\": \"за рецептом\",\n  \"name\": \"ЕТАМБУТОЛ\",\n  \"producer\": \"Свізера Юроп Б.В.\",\n  \"reg_id\": \"UA/15373/01/01\"\n}\n"
 
+    ShoppingList:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        userId:
+          type: integer
+        drugs:
+          type: array
+          items:
+            $ref: "#/components/schemas/Drug"
 paths:
   /:
     get:
@@ -329,3 +344,134 @@ paths:
                   $ref: "#/components/schemas/Drug"
         "401":
           description: Unauthorized
+
+
+  "/shopping_lists":
+    get:
+      tags:
+        - Shopping Lists
+
+      responses:
+        "200":
+          description: Set of users' lists got by JWT
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ShoppingList"
+        "401":
+          description: Unauthorized
+
+    post:
+      tags:
+        - Shopping Lists
+
+      summary: Create a new Shopping List.
+      requestBody:
+        description: Shopping list name
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShoppingList'
+
+      responses:
+        "200":
+          description: Returns Shopping List.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingList'
+
+        "400":
+          description: Wrong request. See response content for details.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                message: Detailed information about error.
+        "401":
+          description: Authentication information is missing or invalid.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                message: Wrong Auth credentials
+
+  "/shopping_lists/{shoppingListId}/drugs":
+    parameters:
+     - in: path
+       name: shoppingListId
+       required: true
+       description: Shopping List ID
+       schema:
+         type: integer
+
+    get:
+      tags:
+        - Shopping Lists
+
+      description: Used to retrieve User's (from JWT bearer) shopping list by ID
+
+      responses:
+        "200":
+          description: Set of shopping list drugs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Drug"
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+
+    post:
+      tags:
+        - Shopping Lists
+
+      summary: Add Drug to Shopping List.
+      requestBody:
+        description: Drug ID to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Drug'
+
+      responses:
+        "200":
+          description: Returns Shopping List\s drugs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingList'
+
+        "400":
+          description: Wrong request. See response content for details.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                message: Detailed information about error.
+        "401":
+          description: Authentication information is missing or invalid.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                message: Wrong Auth credentials

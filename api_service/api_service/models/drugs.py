@@ -4,7 +4,7 @@ from .base import BaseModel
 
 
 class Drug(BaseModel):
-    id = CharField(unique=True)
+    id = CharField(unique=True, primary_key=True)
     name = TextField()
     generic_name = TextField()
     form_factor = TextField()

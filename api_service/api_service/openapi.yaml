@@ -25,7 +25,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      x-tokenInfoFunc: endpoints.auth.jwt
+      x-tokenInfoFunc: api_service.endpoints.auth.jwt
 
   schemas:
     HeartBeat:
@@ -180,9 +180,8 @@ paths:
 
   "/tokens":
     get:
-      security:
-        - bearerAuth: []
-
+      tags:
+        - Users
       responses:
         "200":
           description: Token is valid

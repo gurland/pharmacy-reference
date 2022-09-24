@@ -3,6 +3,7 @@ from flask import request
 
 from api_service.models import User
 from api_service.settings import SECRET
+from api_service.endpoints.auth import jwt_required
 
 
 def post(body):
@@ -27,5 +28,6 @@ def post(body):
         return {"message": "User password is incorrect"}, 401
 
 
+@jwt_required()
 def search():
     return {"test": request.headers.get("Authorization")}

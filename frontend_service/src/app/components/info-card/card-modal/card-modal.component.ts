@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import jwtDecode from 'jwt-decode';
 import { ItemsService } from 'src/app/services/items.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class CardModalComponent implements OnInit {
     @Inject(DOCUMENT) private readonly _document: Document,
     private readonly itemsService: ItemsService,
   ) {
+    console.log(data);
     this.item = data;
 
     if (this.item.instructuion_url) {
@@ -50,7 +52,17 @@ export class CardModalComponent implements OnInit {
     const container = this._document.querySelectorAll('.cdk-global-overlay-wrapper')[0];
     container.classList.add('card-info-overlay');
   }
-  cutDocument(): void {
-
+  summarize() {
+    const user = jwtDecode(localStorage.getItem('accessToken')) as any;
+    console.log(user);
+    const model = {
+      drugId: this.item.id,
+      id: user.id,
+      paperCount: 300,
+      text: "Amoxicillin and beta-lactamase inhibitor is good."
+    }
+    this.itemsService.getSummary(model).subscribe(res => {
+      console.log(res);
+    })
   }
 }

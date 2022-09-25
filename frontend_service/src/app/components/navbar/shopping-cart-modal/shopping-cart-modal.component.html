@@ -3,8 +3,15 @@
         <button id="add" (click)="addNewItem()">Add new item</button>
     </div>
 
-    <div class="item row" [class.active]="itemsService.currentShoppingList === i-1" *ngFor="let item of data; let i = index">
-        <label>{{ item.id }}</label>
-        <button (click)="select(item.id)" class="selectButton">Select</button>
+    <div class="item row" [class.active]="itemsService.currentShoppingList === i+1" *ngFor="let item of data; let i = index">
+        <div class="header">
+            <label>{{ item.id }}</label>
+            <button (click)="select(item.id)" class="selectButton">Select</button>
+        </div>
+        <ul *ngIf="itemsService.currentShoppingList === i+1 && currentData">
+            <li *ngFor="let subItem of currentData.drugs" class="sub-item">
+                {{ subItem.name }}
+            </li>
+        </ul>
     </div>
 </div>

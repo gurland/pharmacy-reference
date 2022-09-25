@@ -9,7 +9,7 @@ from settings import META_SUMMARY_URL, SUMMARY_URL, TEXT_SUMMARY_URL, logger
 
 class SummaryAPI:
     id = str()
-    drugId = str()
+    drug_id = str()
     paper_count = 0
     text = str()
 

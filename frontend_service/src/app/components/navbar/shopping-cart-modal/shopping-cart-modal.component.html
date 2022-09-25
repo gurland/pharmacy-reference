@@ -1,6 +1,6 @@
 <div class="column">
     <div class="row around">
-        <button id="add" (click)="addNewItem()">Add new item</button>
+        <button mat-raised-button color="accent" id="add" (click)="addNewItem()">Add new item</button>
     </div>
 
     <div class="item row" [class.active]="itemsService.currentShoppingList === i+1" *ngFor="let item of data; let i = index">

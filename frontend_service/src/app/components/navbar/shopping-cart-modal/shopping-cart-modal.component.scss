@@ -1,14 +1,16 @@
 @import '../../../../styles/variables.scss';
 
 :host {
-    .column{
+    .column {
         display: flex;
         flex-direction: column;
     }
+
     .row {
         display: flex;
         flex-direction: row;
     }
+
     #add {
         font-size: 18px;
         height: 45px;
@@ -17,32 +19,44 @@
         padding: 0 10px;
         border-radius: 10px;
     }
+
     .around {
         justify-content: space-around;
     }
+
     .item {
         width: 75vw;
         font-size: 18px;
         margin: 0.7rem 0;
+
         button {
             font-size: 16px;
             margin-left: 2rem;
             padding: 0.4rem 2rem;
             border-bottom: $purple solid 1px;
         }
+
         label {
             font-size: 20px;
         }
+
         &.active {
-            background-color: #673AB7;
+            //background-color: #673AB7;
+            button {
+                background-color: #673AB7;
+                color: white;
+            }
         }
     }
+
     .title {
         font-size: 18px;
+
         .mat-icon {
             height: 21px;
         }
     }
+
     .sub-item {
         margin-bottom: 15px;
         color: #fff;

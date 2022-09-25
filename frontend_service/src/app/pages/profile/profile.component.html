@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+<div class="profile">
+    <div class="row between">
+        <label class="title">Username: {{user.username}}</label>
+        <label class="title">Id: {{user.id}}</label>
+        <button mat-button class="accent sh-l" (click)="openShoppingList()">Shopping list <mat-icon>shopping_cart</mat-icon></button>
+    </div>
+
+    <mat-card class="head-card">
+        <label class="title">Profile editing</label>
+        <form class="row between">
+            <div class="pe-text"><label>Username: {{user.username}}</label></div>
+            <button mat-button color="accent" (click)="changeProfileData('username')">Change</button>
+        </form>
+        <form class="row between">
+            <div class="pe-text"><label>Password: {{user.username}}</label></div>
+            <button mat-button color="accent" (click)="changeProfileData('password')">Change</button>
+        </form>
+    </mat-card>
+</div>

@@ -1,1 +1,18 @@
-<p>navbar works!</p>
+<div class="logo-wrap" >
+    <img src="../../../assets/images/icon.png" [routerLink]="''">
+</div>
+
+<div class="info-wrap">
+    <div class="info-item">Info</div>
+    <input type="text" placeholder="Search" (change)="search($event)">
+    <!-- <div class="search" (click)="openSearchModal()">
+        <button>
+            <mat-icon>search</mat-icon>
+        </button>
+    </div> -->
+    <div class="profile">
+        <a [routerLink]="'/profile'">
+            <mat-icon>person</mat-icon>
+        </a>
+    </div>
+</div>

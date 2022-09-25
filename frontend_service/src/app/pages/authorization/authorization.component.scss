@@ -1,0 +1,17 @@
+@import '../../../styles/variables.scss';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+
+    button {
+        margin: 15px 0;
+    }
+  }
+}

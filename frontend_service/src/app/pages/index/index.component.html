@@ -1,3 +1,15 @@
-<app-navbar></app-navbar>
+<div class="responsive-container navbar">
+  <app-navbar></app-navbar>
+</div>
 
-<p>index works!</p>
+<!-- <div class="panel-body" [innerHtml]="text">
+</div> -->
+
+<div class="responsive-container content">
+  <div class="content">
+    <div class="cards-wrap">
+        <app-info-card *ngFor="let item of data" [item]="item"></app-info-card>
+    </div>
+  </div>
+</div>
+

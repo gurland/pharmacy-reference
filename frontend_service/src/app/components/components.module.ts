@@ -12,6 +12,7 @@ import { PdfViewerModule } from "ng2-pdf-viewer";
 import { CardModalComponent } from "./info-card/card-modal/card-modal.component";
 import { ShoppingListComponent } from "../shopping-list/shopping-list.component";
 import { ShoppingCartModalComponent } from './navbar/shopping-cart-modal/shopping-cart-modal.component';
+import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { ShoppingCartModalComponent } from './navbar/shopping-cart-modal/shoppin
     ReactiveFormsModule,
     MatCardModule,
     RouterModule,
-    PdfViewerModule
+    PdfViewerModule,
+    MatButtonModule
   ],
   declarations: [NavbarComponent, SearchModalComponent, InfoCardComponent, ShoppingListComponent, CardModalComponent, ShoppingCartModalComponent],
   providers: [],

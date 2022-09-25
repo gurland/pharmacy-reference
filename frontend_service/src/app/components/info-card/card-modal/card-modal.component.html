@@ -1,19 +1,9 @@
-<!-- <div class="row between">
-    <div class="column between">
-        <h1>{{data1.dragName}}</h1>
-        <h2>Active substance: {{data1.activeSubstance}}</h2>
-        <h3>Country: </h3>
-        <h3>Company: </h3>
-        <h3>License: </h3>
-        <h3>Other short information</h3>
-    </div>
-    <img src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-</div>
-<p>{{data1.description}}</p> -->
-
 <div class="header">
-    <h1>{{ item.dragName }}</h1>
-    <button (click)="summarize()">Summarize</button>
+    <h1>{{ item.name }}</h1>
+    <button mat-button primary *ngIf="!item.summarization" (click)="summarize()">Summarize</button>
+    <hr>
+    <div>Paper count: {{ item?.paperCount }}</div>
+    <div>Summarization text: {{ item?.text }}</div>
 </div>
 
 <pdf-viewer

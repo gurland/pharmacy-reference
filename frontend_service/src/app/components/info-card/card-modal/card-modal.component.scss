@@ -5,6 +5,11 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 1.5rem;
+    .card-header {
+      button {
+        border: 1px solid black;
+      }
+    }
   }
   .column {
     display: flex;

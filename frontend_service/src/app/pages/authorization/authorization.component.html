@@ -1,0 +1,32 @@
+<form *ngIf="authForm" class="auth-form" [formGroup]="authForm">
+  <h2>{{ authParam | titlecase }}</h2>
+  <mat-form-field class="" appearance="outline">
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username">
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password">
+  </mat-form-field>
+
+  <div *ngIf="authParam == 'register'">
+    <mat-checkbox class="example-margin" formControlName="isDoctor">Are you a doctor?</mat-checkbox>
+  </div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="submitForm()"
+    [disabled]="!authForm.valid"
+  >{{ authParam === 'login' ? 'Login' : 'Registration' }}</button>
+
+  <a
+    *ngIf="authParam == 'register'" 
+    [routerLink]="['/authorization/login']"
+  >Login</a>
+
+  <div *ngIf="authParam == 'login'">
+    Don't have an account?
+    <a [routerLink]="['/authorization/register']">Register it!</a>
+  </div>
+</form>

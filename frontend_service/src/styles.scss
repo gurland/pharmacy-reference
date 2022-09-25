@@ -4,9 +4,76 @@
 @include mat.core();
 @include mat.all-component-themes($app-theme);
 
-// FIRST styles
+@import './styles/mixins';
 @import './styles/variables';
 @import './styles/reset';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+app-root {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.responsive-container {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+
+    >* {
+        width: 60%;
+    }
+    &.navbar {
+        background-color: $purple_2;
+        border-bottom: 1px solid $purple;
+    }
+    &.content {
+        padding: 15px 0;
+        height: calc(100vh - 52px);
+        overflow: auto;
+    }
+
+    @include respond-to(991px) {
+        >* {
+            width: 85%;
+        }
+    }
+    @include respond-to(543px) {
+        >* {
+            width: 100%;
+            padding: 0 15px;
+        }
+    }
+}
+
+.cdk-global-overlay-wrapper {
+    &.search-overlay {
+      align-items: flex-start !important;
+    }
+    &.card-info-overlay {
+        justify-content: end !important;
+    }
+
+    .cdk-overlay-pane {
+        &.search-modal {
+            width: 60%;
+    
+            .mat-dialog-container {
+                padding: 0;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+        }
+        &.card-info-modal {
+            width: 80%;
+            height: 100vh;
+
+            .mat-dialog-container {
+                border-radius: 0;
+            }
+        }
+    }
+  }

@@ -1,0 +1,14 @@
+<mat-card class="info-card column" [class.danger]="item.is_homeopaty">
+  <div class="icon-container">
+    <mat-icon *ngIf="item">{{ randIcon }}</mat-icon>
+  </div>
+  <mat-card-content>
+    <mat-card-title>{{item.name}}</mat-card-title>
+    <mat-card-subtitle> {{ item.country }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ item.generic_name }}</mat-card-subtitle>
+    <mat-card-subtitle> {{ item.drug_class }}</mat-card-subtitle>
+  </mat-card-content>
+  <mat-card-actions class="right-align">
+    <button mat-button (click)="openCardModal(item)">View</button>
+  </mat-card-actions>і
+</mat-card>

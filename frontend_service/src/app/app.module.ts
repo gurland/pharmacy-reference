@@ -8,6 +8,7 @@ import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
 import { RequestInterceptor } from './request.interceptor';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     PagesModule,
     ComponentsModule,
     HttpClientModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    PdfViewerModule
   ],
   providers: [
     {

@@ -315,6 +315,97 @@ paths:
               example:
                 message: Wrong Auth credentials
 
+  "/summarizations/{summarizationId}/meta":
+    post:
+      tags:
+        - Summarizations
+
+      summary: Add meta to a Summarization.
+      requestBody:
+        description: Meta data for The summarization
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                paperCount:
+                  type: integer
+      responses:
+        "200":
+          description: Returns Summarization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Summarization'
+
+        "400":
+          description: Wrong request. See response content for details.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                message: Detailed information about error.
+        "401":
+          description: Authentication information is missing or invalid.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                message: Wrong Auth credentials
+
+  "/summarizations/{summarizationId}/text":
+    post:
+      tags:
+        - Summarizations
+
+      summary: Add text to a Summarization.
+      requestBody:
+        description: Text data for The summarization
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+
+      responses:
+        "200":
+          description: Returns Summarization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Summarization'
+
+        "400":
+          description: Wrong request. See response content for details.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                message: Detailed information about error.
+        "401":
+          description: Authentication information is missing or invalid.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                message: Wrong Auth credentials
+
   "/drugs":
     get:
       tags:

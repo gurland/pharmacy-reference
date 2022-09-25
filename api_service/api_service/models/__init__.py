@@ -2,7 +2,7 @@ from time import sleep
 import logging
 
 from api_service.models.users import User
-from api_service.models.summarizations import Summarization
+from api_service.models.summarizations import Summarization, SummarizationMeta, SummarizationText
 from api_service.models.drugs import Drug
 from api_service.models.base import db
 from api_service.models.shopping_lists import ShoppingList, ShoppingListDrug
@@ -11,7 +11,10 @@ from api_service.models.utils import load_drugs_gen
 
 for i in range(10):
     try:
-        db.create_tables([User, Summarization, Drug, ShoppingList, ShoppingListDrug])
+        db.create_tables(
+            [User, Summarization, SummarizationMeta,
+             SummarizationText, Drug, ShoppingList, ShoppingListDrug
+        ])
 
         break
     except Exception as e:

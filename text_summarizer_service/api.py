@@ -52,7 +52,13 @@ class SummaryAPI:
             response = requests.post(url=url, json=payload)
             logger.debug(f"sent request with payload: {payload}")
 
-            self._check_response_status(response)
+            # self._check_response_status(response)
+            if response.status_code == 200:
+            logger.debug("response sending status: success")
+            return True
+        else:
+            logger.debug(f"response sending status: failed ({response.status_code})")
+            return False
             return response
         except Exception as e:
             logger.error(f"failed to send request to {SUMMARY_URL}: {e}")

@@ -42,7 +42,7 @@ class Drug(BaseModel):
         }
 
         try:
-            result["summarization"] = self.summarizations[0].asdict()
+            result["summarization"] = Summarization.get(drug_id=self.id).asdict()
         except:
             pass
 

@@ -39,6 +39,8 @@ def run_summarization(text: str) -> str|None:
         if USE_NEURAL_WEB_MODEL == False:
             return None
 
+        logger.info(f"input text = {text}")
+
         tokens = _tokenizer(text, truncation=True, padding="longest", return_tensors="pt")
         logger.info("tokenized input text")
         prediction = _model.generate(**tokens, max_new_tokens=128)

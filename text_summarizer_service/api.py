@@ -14,7 +14,7 @@ class SummaryAPI:
     text = str()
 
 
-    def _check_response_status(response: requests.Response) -> bool:
+    def _check_response_status(self, response: requests.Response) -> bool:
         """
         Check response status
         """
@@ -64,7 +64,7 @@ class SummaryAPI:
         Send meta information to API
         """
         response = self.send_request(META_SUMMARY_URL.format(id=id), {"drugId": self.drug_id, "paperCount": paper_count})
-        if self._check_response_status(response) == True:
+        if self._check_response_status(response):
             self = self.from_json(response.text)
             return self
         else:

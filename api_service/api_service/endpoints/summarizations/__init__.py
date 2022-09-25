@@ -27,6 +27,10 @@ def post(body):
     return summarization.asdict()
 
 
+def get(summarizationId):
+    return Summarization.get(id=summarizationId).asdict()
+
+
 def search():
     return [
         summarization.asdict() for summarization in Summarization.select()

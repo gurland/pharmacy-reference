@@ -317,7 +317,7 @@ paths:
   "/summarizations/{summarizationId}/":
     parameters:
       - in: path
-        name: shoppingListId
+        name: summarizationId
         required: true
         description: Shopping List ID
         schema:

@@ -34,7 +34,7 @@ def run_summarization(text: str) -> str|None:
     try:
         tokens = _tokenizer(text, truncation=True, padding="longest", return_tensors="pt")
         logger.info("tokenized input text")
-        prediction = _model.generate(**tokens)
+        prediction = _model.generate(**tokens, max_new_tokens=128)
         logger.info("generated model")
         result = _tokenizer.decode(prediction[0])
         return result

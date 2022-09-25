@@ -4,6 +4,7 @@ import { ItemsService } from 'src/app/services/items.service';
 
 import { Router } from '@angular/router'
 import { SearchModalComponent } from './search-modal/search-modal.component';
+import { ShoppingCartModalComponent } from './shopping-cart-modal/shopping-cart-modal.component';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +21,9 @@ export class NavbarComponent implements OnInit {
     private readonly router: Router
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.itemsService.getShoppingList().subscribe((count: any) => this.itemsService.currentShoppingList = count.length);
+  }
 
   openSearchModal(): void {
     const dialogRef = this.searchDialog.open(SearchModalComponent, {
@@ -32,6 +35,10 @@ export class NavbarComponent implements OnInit {
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log(result);
     // });
+  }
+
+  shoppingCart(): void {
+    this.searchDialog.open(ShoppingCartModalComponent);
   }
 
   search(value): void {

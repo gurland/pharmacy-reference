@@ -11,6 +11,7 @@ import { RouterModule } from "@angular/router";
 import { PdfViewerModule } from "ng2-pdf-viewer";
 import { CardModalComponent } from "./info-card/card-modal/card-modal.component";
 import { ShoppingListComponent } from "../shopping-list/shopping-list.component";
+import { ShoppingCartModalComponent } from './navbar/shopping-cart-modal/shopping-cart-modal.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { ShoppingListComponent } from "../shopping-list/shopping-list.component"
     RouterModule,
     PdfViewerModule
   ],
-  declarations: [NavbarComponent, SearchModalComponent, InfoCardComponent, ShoppingListComponent, CardModalComponent],
+  declarations: [NavbarComponent, SearchModalComponent, InfoCardComponent, ShoppingListComponent, CardModalComponent, ShoppingCartModalComponent],
   providers: [],
   exports: [NavbarComponent, InfoCardComponent, ShoppingListComponent]
 })

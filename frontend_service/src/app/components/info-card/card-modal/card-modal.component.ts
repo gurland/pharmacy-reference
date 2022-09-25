@@ -41,7 +41,7 @@ export class CardModalComponent implements OnInit {
         });
       }
     }
-    console.log(this.item.fileUrl);
+    this.item.fileUrl = this.item.fileUrl.indexOf(/.charset=".+".*\s/m)
   }
 
   ngOnInit(): void {

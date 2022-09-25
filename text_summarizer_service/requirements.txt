@@ -2,8 +2,9 @@
 
 requests
 redis
+protobuf
+sentencepiece
 torch
 torchvision
 torchaudio
 transformers
-sentencepiece

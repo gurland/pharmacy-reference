@@ -1,7 +1,7 @@
 # Module where stores all neural web related stuff
 
 from transformers import PegasusForConditionalGeneration, PegasusTokenizer
-from settings import logger
+from settings import USE_NEURAL_WEB_MODEL, logger
 
 _tokenizer = None
 _model = None
@@ -12,6 +12,10 @@ def initialize_model() -> None:
     Initializes neural web model
     [?] TODO: add all nessessary initialization
     """
+
+    if USE_NEURAL_WEB_MODEL == False:
+        logger.info("skipping initialization since USE_NEURAL_WEB_MODEL is disabled")
+        return
 
     logger.info("initializing tokenizer...")
     _tokenizer = PegasusTokenizer.from_pretrained(_pretrained_model_name)
@@ -32,6 +36,9 @@ def run_summarization(text: str) -> str|None:
     """
 
     try:
+        if USE_NEURAL_WEB_MODEL == False:
+            return None
+
         tokens = _tokenizer(text, truncation=True, padding="longest", return_tensors="pt")
         logger.info("tokenized input text")
         prediction = _model.generate(**tokens, max_new_tokens=128)
@@ -48,11 +55,13 @@ def get_summarization(input: str) -> str|None:
     Gets on input prepared text from pubmed module
     """
 
-    summary = run_summarization(input)
-    if summary == None:
-        logger.debug("generating stub summary")
-        return f"Some random summary from abstract for original text: {input}"
-    else:
-        logger.debug("NOT SUPPORTED")
-        logger.debug("Actual summarization with neural web is not available at the moment")
+    try:
+        summary = run_summarization(input)
+        if summary == None:
+            logger.debug("generating stub summary")
+            return f"Some random summary from abstract for original text: {input}"
+        else:
+            return summary
+    except:
+        logger.error("an error occured when trying to get summarization")
         return None

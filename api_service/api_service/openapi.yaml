@@ -320,13 +320,6 @@ paths:
         - Summarizations
 
       summary: Get Single Summarization info.
-      requestBody:
-        description: Summarization object
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Summarization'
       responses:
         "200":
           description: Returns Summarization.

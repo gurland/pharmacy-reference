@@ -1,3 +1,5 @@
+# Module where stores all neural web related stuff
+
 from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 from settings import logger
 
@@ -11,15 +13,15 @@ def initialize_model() -> None:
     [?] TODO: add all nessessary initialization
     """
 
-    logger.debug("initializing tokenizer...")
+    logger.info("initializing tokenizer...")
     _tokenizer = PegasusTokenizer.from_pretrained(_pretrained_model_name)
-    logger.debug("done.")
+    logger.info("done.")
 
-    logger.debug("initializing mode...")
+    logger.info("initializing mode...")
     _model = PegasusForConditionalGeneration.from_pretrained(_pretrained_model_name)
-    logger.debug("done.")
+    logger.info("done.")
 
-    logger.debug("initialization complete")
+    logger.info("initialization complete")
 
 
 def run_summarization(text: str) -> str|None:

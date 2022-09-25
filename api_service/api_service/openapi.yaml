@@ -272,48 +272,6 @@ paths:
                   $ref: "#/components/schemas/Summarization"
         "401":
           description: Unauthorized
-
-    put:
-      tags:
-        - Summarization
-
-      summary: Create Queue task for summarizatior
-      requestBody:
-        description: Drug info for summary to generate
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                drugId:
-                  type: string
-                  description: Drug ID
-                term:
-                  type: string
-                  description: Should be generic name
-
-              example:
-                drugId: 941D1838ECFC93E4C225869300309A49
-                term: Histidine
-      responses:
-        "200":
-          description: Returns ok.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message: string
-
-        "400":
-          description: Wrong request. See response content for details.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-              example:
-                message: Detailed information about error.
     post:
       tags:
         - Summarizations

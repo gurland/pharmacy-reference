@@ -2,9 +2,8 @@ import os
 import logging
 
 SUMMARY_URL = os.getenv("SUMMARY_URL", "http://nginx:80/api/summarizations")
-NEW_SUMMARY_URL = f"{SUMMARY_URL}/new"
-META_SUMMARY_URL = f"{SUMMARY_URL}/meta"
-TEXT_SUMMARY_URL = f"{SUMMARY_URL}/text"
+META_SUMMARY_URL = f"{SUMMARY_URL}/{{id}}/meta"
+TEXT_SUMMARY_URL = f"{SUMMARY_URL}/{{id}}/text"
 
 PUBMED_BASE_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 PUBMED_SEARCH_URL = f"{PUBMED_BASE_URL}/esearch.fcgi?db=pubmed&term={{term}}"

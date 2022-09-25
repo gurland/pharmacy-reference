@@ -59,25 +59,11 @@ class SummaryAPI:
 
 
     # TODO: replace from_json. Don't need to overwrite whole object, when can just update one field
-    def send_new(self, drug_id: str) -> Self|None:
-        """
-        Send request for creation of new summary to API
-        """
-        
-        response = self.send_request(NEW_SUMMARY_URL)
-        if self._check_response_status(response) == True:
-            self = self.from_json(response.text)
-            return self
-        else:
-            return None
-
-
-    # TODO: replace from_json. Don't need to overwrite whole object, when can just update one field
     def send_meta(self, paper_count: int) -> Self|None:
         """
         Send meta information to API
         """
-        response = self.send_request(META_SUMMARY_URL, {"drugId": self.drug_id, "paperCount": paper_count})
+        response = self.send_request(META_SUMMARY_URL.format(id=id), {"drugId": self.drug_id, "paperCount": paper_count})
         if self._check_response_status(response) == True:
             self = self.from_json(response.text)
             return self
@@ -90,7 +76,7 @@ class SummaryAPI:
         """
         Send text(summary) to update previously created summary
         """
-        response = self.send_request(TEXT_SUMMARY_URL, {"drugId": self.drug_id, "text": text})
+        response = self.send_request(TEXT_SUMMARY_URL.format(id=id), {"drugId": self.drug_id, "text": text})
         if self._check_response_status(response):
             self = self.from_json(response.text)
             return self

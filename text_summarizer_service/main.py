@@ -21,8 +21,8 @@ def main():
 
         req = json.loads(req[1].decode())
         term = req["term"]
-        drug_id = req["id"]
-        logger.debug(f"drug_id = {drug_id}, term = {term}")
+        id = req["id"]
+        logger.debug(f"drug_id = {id}, term = {term}")
 
         summary = SummaryAPI()
 
@@ -38,9 +38,9 @@ def main():
             # TBD: probably send error to API?
             continue
 
-        if summary.send_new(drug_id) is None:
-            logger.error(f"failed to send summary creation request (drug_id = {summary.drug_id})")
-            continue
+        # if summary.send_new(id) is None:
+        #     logger.error(f"failed to send summary creation request (drug_id = {summary.drug_id})")
+        #     continue
 
         if summary.send_meta(paper_count) is None:
             logger.error(f"failed to update summary metadata (drug_id = {summary.drug_id})")

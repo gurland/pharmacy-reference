@@ -9,6 +9,7 @@ import { ItemsService } from 'src/app/services/items.service';
 export class ShoppingCartModalComponent implements OnInit {
   data = [] as any;
   shoppingListCount = 0;
+  currentData = {} as any;
 
   constructor(
     public readonly itemsService: ItemsService
@@ -20,18 +21,19 @@ export class ShoppingCartModalComponent implements OnInit {
 
   addNewItem() {
     this.itemsService.createShoppingList().subscribe(res => {
-      console.log(res);
       this.fetchData();
     })
   }
 
   select(id: number) {
     this.itemsService.currentShoppingList = id;
+    this.currentData = this.data[id-1];
   }
 
   fetchData() {
     this.itemsService.getShoppingList().subscribe(data => {
       this.data = data;
+      this.select(this.itemsService.currentShoppingList);
     });
   }
 }

@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM huggingface/transformers-pytorch-cpu
 
 COPY . app
 WORKDIR app/

@@ -1,8 +1,8 @@
 <div class="column">
     <div class="row around">
-        <button id="add" (click)="addNewItem()">Add new item</button>
+        <button mat-raised-button color="accent" id="add" (click)="addNewItem()">Add new item</button>
     </div>
-
+    
     <div class="item row" *ngFor="let item of data; let i = index">
         <label>{{ item.id }}</label>
         <button (click)="select(item.id)" class="selectButton">Select</button>

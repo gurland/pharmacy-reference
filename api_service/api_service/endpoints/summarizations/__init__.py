@@ -1,25 +1,30 @@
 from api_service.models import Summarization
+from api_service.settings import REDIS_HOST, REDIS_PORT, REDIS_DB
+import json
+
+from redis import Redis
+
+
+r = Redis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
 
 
 def post(body):
-    return Summarization.create(
+    summarization = Summarization.create(
         **{
             "drug_id": body.get("drugId"),
             "paper_count": body.get("paperCount"),
             "text": body.get("text")
         }
-    ).asdict()
+    )
 
-
-def put(body):
-    return Summarization.create(
-        **{
-            "drug_id": body.get("drugId"),
-            "paper_count": body.get("paperCount"),
-            "text": body.get("text")
+    r.lpush("summarization_tasks", json.dumps(
+        {
+            "id": summarization.id,
+            "term": body.get("term")
         }
-    ).asdict()
+    ))
 
+    return summarization.asdict()
 
 
 def search():

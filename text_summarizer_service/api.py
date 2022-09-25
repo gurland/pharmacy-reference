@@ -14,17 +14,17 @@ class SummaryAPI:
     text = str()
 
 
-    def _check_response_status(self, response: requests.Response) -> bool:
-        """
-        Check response status
-        """
+    # def _check_response_status(self, response: requests.Response) -> bool:
+    #     """
+    #     Check response status
+    #     """
 
-        if response.status_code == 200:
-            logger.debug("response sending status: success")
-            return True
-        else:
-            logger.debug(f"response sending status: failed ({response.status_code})")
-            return False
+    #     if response.status_code == 200:
+    #         logger.debug("response sending status: success")
+    #         return True
+    #     else:
+    #         logger.debug(f"response sending status: failed ({response.status_code})")
+    #         return False
 
 
     def to_json(self) -> str:
@@ -63,7 +63,11 @@ class SummaryAPI:
         Send meta information to API
         """
         response = self.send_request(META_SUMMARY_URL.format(id=id), {"drugId": self.drug_id, "paperCount": paper_count})
-        if self._check_response_status(response):
+        if response == None:
+            logger.error("failed to send_request")
+            return None
+
+        if self.response.status_code == 200:
             self = self.from_json(response.text)
             return self
         else:
@@ -76,7 +80,11 @@ class SummaryAPI:
         Send text(summary) to update previously created summary
         """
         response = self.send_request(TEXT_SUMMARY_URL.format(id=id), {"drugId": self.drug_id, "text": text})
-        if self._check_response_status(response):
+        if response == None:
+            logger.error("failed to send_request")
+            return None
+
+        if response.status_code == 200:
             self = self.from_json(response.text)
             return self
         else:

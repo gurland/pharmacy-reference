@@ -20,12 +20,6 @@ def create_app() -> connexion.App:
         strict_validation=True,
     )
 
-    @app.app.teardown_appcontext
-    def shutdown_session(exception):
-        if exception:
-            db.rollback()
-        db.close()
-
     logging.debug(f"RDS: {DATABASE_URI}")
     return app
 

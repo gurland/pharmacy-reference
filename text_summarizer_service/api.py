@@ -8,7 +8,7 @@ from settings import META_SUMMARY_URL, SUMMARY_URL, TEXT_SUMMARY_URL, logger
 
 
 class SummaryAPI:
-    id = str()
+    db_id = str()
     drug_id = str()
     paper_count = 0
     text = str()
@@ -62,7 +62,7 @@ class SummaryAPI:
         """
         Send meta information to API
         """
-        response = self.send_request(META_SUMMARY_URL.format(id=self.id), {"drugId": self.drug_id, "paperCount": paper_count})
+        response = self.send_request(META_SUMMARY_URL.format(id=self.db_id), {"drugId": self.drug_id, "paperCount": paper_count})
         if response == None:
             logger.error("failed to send_request")
             return None
@@ -79,7 +79,7 @@ class SummaryAPI:
         """
         Send text(summary) to update previously created summary
         """
-        response = self.send_request(TEXT_SUMMARY_URL.format(id=self.id), {"drugId": self.drug_id, "text": text})
+        response = self.send_request(TEXT_SUMMARY_URL.format(id=self.db_id), {"drugId": self.drug_id, "text": text})
         if response == None:
             logger.error("failed to send_request")
             return None

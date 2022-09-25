@@ -25,6 +25,7 @@ def main():
         logger.debug(f"drug_id = {id}, term = {term}")
 
         summary = SummaryAPI()
+        summary.db_id = id
 
         id_list, paper_count = get_articles_id_from_term(term)
         if id_list is None:
@@ -39,7 +40,7 @@ def main():
             continue
 
         if summary.send_meta(paper_count) is None:
-            logger.error(f"failed to update summary metadata (id = {summary.id})")
+            logger.error(f"failed to update summary metadata (id = {summary.db_id})")
             continue
 
         text = get_summarization(abstracts_list[0])
@@ -50,7 +51,7 @@ def main():
         logger.debug(f"summary = {text}")
 
         if summary.send_text(text) is None:
-            logger.error(f"failed to update summary text (id = {summary.id}")
+            logger.error(f"failed to update summary text (id = {summary.db_id}")
             continue
 
 

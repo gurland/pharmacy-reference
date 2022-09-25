@@ -1,8 +1,8 @@
-FROM huggingface/transformers-pytorch-cpu
+FROM python:3-slim
 
 COPY . app
 WORKDIR app/
 
 RUN pip install -r requirements.txt
 
-CMD python3 main.py
+CMD python main.py

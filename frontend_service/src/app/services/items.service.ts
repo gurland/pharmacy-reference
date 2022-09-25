@@ -15,7 +15,7 @@ export class ItemsService {
   ) { }
 
   getItems(query) {
-    return this.http.get('/drugs', { params: { term: query } } )
+    return this.http.get('drugs', { params: { term: query } } )
   }
 
   getItemFile(url: string) {
@@ -36,5 +36,9 @@ export class ItemsService {
 
   getShoppingList() {
     return this.http.get('shopping_lists');
+  }
+
+  getSummary(model) {
+    return this.http.post('summarizations', model);
   }
 }

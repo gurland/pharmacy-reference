@@ -33,6 +33,7 @@ export class ShoppingCartModalComponent implements OnInit {
   fetchData() {
     this.itemsService.getShoppingList().subscribe(data => {
       this.data = data;
+      console.log(this.data);
       this.select(this.itemsService.currentShoppingList);
     });
   }

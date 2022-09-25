@@ -11,6 +11,11 @@
 </div>
 <p>{{data1.description}}</p> -->
 
+<div class="header">
+    <h1>{{ item.dragName }}</h1>
+    <button (click)="summarize()">Summarize</button>
+</div>
+
 <pdf-viewer
     *ngIf="fileView === 'pdf'"
     [src]="item?.fileUrl"

@@ -22,12 +22,7 @@ class Drug(BaseModel):
     instructuion_url = TextField(null=True)
 
     def asdict(self):
-        try:
-            summarization = self.summarizations[0]
-        except:
-            summarization = None
-
-        return {
+        result = {
             "id": self.id,
             "name": self.name,
             "generic_name": self.generic_name,
@@ -43,5 +38,12 @@ class Drug(BaseModel):
             "is_biologic": self.is_biologic,
             "is_herbal": self.is_herbal,
             "instructuion_url": self.instructuion_url,
-            "summarization": summarization.asdict()
+            "summarization": None
         }
+
+        try:
+            result["summarization"] = self.summarizations[0].asdict()
+        except:
+            pass
+
+        return result

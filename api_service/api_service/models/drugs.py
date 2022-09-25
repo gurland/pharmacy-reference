@@ -1,6 +1,7 @@
 from peewee import *
 
 from .base import BaseModel
+from .summarizations import Summarization
 
 
 class Drug(BaseModel):
@@ -21,6 +22,11 @@ class Drug(BaseModel):
     instructuion_url = TextField(null=True)
 
     def asdict(self):
+        try:
+            summarization = self.summarizations[0]
+        except:
+            summarization = None
+
         return {
             "id": self.id,
             "name": self.name,
@@ -36,5 +42,6 @@ class Drug(BaseModel):
             "is_homeopaty": self.is_homeopaty,
             "is_biologic": self.is_biologic,
             "is_herbal": self.is_herbal,
-            "instructuion_url": self.instructuion_url
+            "instructuion_url": self.instructuion_url,
+            "summarization": summarization.asdict()
         }

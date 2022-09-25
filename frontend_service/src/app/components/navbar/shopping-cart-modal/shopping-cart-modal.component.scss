@@ -32,7 +32,10 @@
         }
         label {
             font-size: 20px;
-        }       
+        }
+        &.active {
+            background-color: red;
+        }
     }
     .title {
         font-size: 18px;

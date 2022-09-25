@@ -4,7 +4,7 @@ from typing import Any
 from typing_extensions import Self
 import json
 import requests
-from settings import META_SUMMARY_URL, NEW_SUMMARY_URL, SUMMARY_URL, TEXT_SUMMARY_URL, logger
+from settings import META_SUMMARY_URL, SUMMARY_URL, TEXT_SUMMARY_URL, logger
 
 
 class SummaryAPI:

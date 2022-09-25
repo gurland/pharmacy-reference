@@ -39,7 +39,7 @@ def main():
             continue
 
         if summary.send_meta(paper_count) is None:
-            logger.error(f"failed to update summary metadata (drug_id = {summary.drug_id})")
+            logger.error(f"failed to update summary metadata (id = {summary.id})")
             continue
 
         text = get_summarization(abstracts_list[0])
@@ -50,7 +50,7 @@ def main():
         logger.debug(f"summary = {text}")
 
         if summary.send_text(text) is None:
-            logger.error(f"failed to update summary text (drug_id = {summary.drug_id}")
+            logger.error(f"failed to update summary text (id = {summary.id}")
             continue
 
 

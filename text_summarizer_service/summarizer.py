@@ -47,8 +47,8 @@ def run_summarization(text: str) -> str|None:
         logger.info("generated model")
         result = tokenizer.decode(prediction[0])
         return result
-    except:
-        logger.error("an error occured when was running summarization")
+    except e:
+        logger.error(f"an error occured when was running summarization: {e}")
         return None
 
 

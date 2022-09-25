@@ -2,7 +2,7 @@
 
 requests
 redis
-protobuf
+protobuf==3.20.0
 sentencepiece
 torch
 torchvision

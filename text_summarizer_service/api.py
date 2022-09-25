@@ -41,7 +41,7 @@ class SummaryAPI:
         return json.loads(string)
 
 
-    def send_request(self, url: str, payload: Any) -> requests.Response: 
+    def send_request(self, url: str, payload: Any) -> requests.Response|None: 
         """
         Send request to API
         """
@@ -51,17 +51,10 @@ class SummaryAPI:
         try:
             response = requests.post(url=url, json=payload)
             logger.debug(f"sent request with payload: {payload}")
-
-            # self._check_response_status(response)
-            if response.status_code == 200:
-            logger.debug("response sending status: success")
-            return True
-        else:
-            logger.debug(f"response sending status: failed ({response.status_code})")
-            return False
             return response
         except Exception as e:
             logger.error(f"failed to send request to {SUMMARY_URL}: {e}")
+            return None
 
 
     # TODO: replace from_json. Don't need to overwrite whole object, when can just update one field

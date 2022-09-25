@@ -32,11 +32,6 @@ services:
     environment:
       POSTGRES_PASSWORD: portwontbeopened
 
-  datafeed:
-    build: ./datafeed_service/
-    env_file:
-      - .env
-
   api:
     build: ./api_service/
     env_file:

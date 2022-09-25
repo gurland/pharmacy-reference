@@ -19,12 +19,11 @@ def create_app() -> connexion.App:
         base_path="/api",
         strict_validation=True,
     )
-    # CORS(
-    #     app.app,
-    # )
 
     @app.app.teardown_appcontext
-    def shutdown_session(*args, **kwargs):
+    def shutdown_session(exception):
+        if exception:
+            db.rollback()
         db.close()
 
     logging.debug(f"RDS: {DATABASE_URI}")

@@ -3,5 +3,7 @@
 requests
 redis
 torch
+torchvision
+torchaudio
 transformers
 sentencepiece

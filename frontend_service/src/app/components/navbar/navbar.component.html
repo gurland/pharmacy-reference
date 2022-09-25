@@ -14,7 +14,7 @@
     </button>
   
     <div class="profile">
-        <a [routerLink]="'/profile'">
+        <a [routerLink]="user?.id ? '/profile' : '/authorization/register'">
             <mat-icon>person</mat-icon>
         </a>
     </div>

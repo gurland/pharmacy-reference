@@ -2,8 +2,8 @@
     <h1>{{ item.name }}</h1>
     <button mat-button primary *ngIf="!item.summarization" (click)="summarize()">Summarize</button>
     <hr>
-    <div>Paper count: {{ item?.paperCount }}</div>
-    <div>Summarization text: {{ item?.text }}</div>
+    <div>Paper count: {{ item?.summarization?.paperCount }}</div>
+    <div>Summarization text: {{ item?.summarization?.text }}</div>
 </div>
 
 <pdf-viewer

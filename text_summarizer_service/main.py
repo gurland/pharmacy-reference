@@ -8,7 +8,7 @@ from api import SummaryAPI
 
 
 def main():
-    initialize_model()
+    # initialize_model()
 
     rd = redis.Redis(host=REDIS_HOST, port=REDIS_PORT,db=REDIS_DB)
 

@@ -39,7 +39,7 @@ def main():
             # TBD: probably send error to API?
             continue
 
-        if summary.send_meta(paper_count) is None:
+        if summary.send_meta(int(paper_count)) is None:
             logger.error(f"failed to update summary metadata (id = {summary.db_id})")
             continue
 

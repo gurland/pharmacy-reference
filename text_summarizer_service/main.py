@@ -21,7 +21,7 @@ def main():
 
         req = json.loads(req[1].decode())
         term = req["term"]
-        drug_id = req["drug_id"]
+        drug_id = req["id"]
         logger.debug(f"drug_id = {drug_id}, term = {term}")
 
         summary = SummaryAPI()

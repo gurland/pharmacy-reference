@@ -22,7 +22,7 @@ def initialize_model() -> None:
     logger.info("done.")
 
     logger.info("initializing model...")
-    model = PegasusForConditionalGeneration.from_pretrained(_pretrained_model_name)
+    model = PegasusForConditionalGeneration.from_pretrained(_pretrained_model_name).to("cpu")
     logger.info("done.")
 
     logger.info("initialization complete")

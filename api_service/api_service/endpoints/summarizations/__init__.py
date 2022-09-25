@@ -11,6 +11,17 @@ def post(body):
     ).asdict()
 
 
+def put(body):
+    return Summarization.create(
+        **{
+            "drug_id": body.get("drugId"),
+            "paper_count": body.get("paperCount"),
+            "text": body.get("text")
+        }
+    ).asdict()
+
+
+
 def search():
     return [
         summarization.asdict() for summarization in Summarization.select()

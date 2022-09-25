@@ -67,7 +67,7 @@ class SummaryAPI:
             logger.error("failed to send_request")
             return None
 
-        if self.response.status_code == 200:
+        if response.status_code == 200:
             self = self.from_json(response.text)
             return self
         else:

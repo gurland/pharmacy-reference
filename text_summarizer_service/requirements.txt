@@ -2,8 +2,9 @@
 
 requests
 redis
+protobuf==3.20.0
+sentencepiece
 torch
 torchvision
 torchaudio
 transformers
-sentencepiece

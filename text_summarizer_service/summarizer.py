@@ -3,29 +3,29 @@
 from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 from settings import USE_NEURAL_WEB_MODEL, logger
 
-tokenizer = None
-model = None
 _pretrained_model_name = "google/pegasus-pubmed"
+tokenizer = PegasusTokenizer.from_pretrained(_pretrained_model_name)
+model = PegasusForConditionalGeneration.from_pretrained(_pretrained_model_name).to("cpu")
 
-def initialize_model() -> None:
-    """
-    Initializes neural web model
-    [?] TODO: add all nessessary initialization
-    """
+# def initialize_model() -> None:
+#     """
+#     Initializes neural web model
+#     [?] TODO: add all nessessary initialization
+#     """
 
-    if USE_NEURAL_WEB_MODEL == False:
-        logger.info("skipping initialization since USE_NEURAL_WEB_MODEL is disabled")
-        return
+#     if USE_NEURAL_WEB_MODEL == False:
+#         logger.info("skipping initialization since USE_NEURAL_WEB_MODEL is disabled")
+#         return
 
-    logger.info("initializing tokenizer...")
-    tokenizer = PegasusTokenizer.from_pretrained(_pretrained_model_name)
-    logger.info("done.")
+#     logger.info("initializing tokenizer...")
+#     tokenizer = AutoTokenizer.from_pretrained(_pretrained_model_name)
+#     logger.info("done.")
 
-    logger.info("initializing model...")
-    model = PegasusForConditionalGeneration.from_pretrained(_pretrained_model_name)
-    logger.info("done.")
+#     logger.info("initializing model...")
+#     model = PegasusForConditionalGeneration.from_pretrained(_pretrained_model_name).to("cpu")
+#     logger.info("done.")
 
-    logger.info("initialization complete")
+#     logger.info("initialization complete")
 
 
 def run_summarization(text: str) -> str|None:
@@ -47,8 +47,8 @@ def run_summarization(text: str) -> str|None:
         logger.info("generated model")
         result = tokenizer.decode(prediction[0])
         return result
-    except:
-        logger.error("an error occured when was running summarization")
+    except Exception as e:
+        logger.error(f"an error occured when was running summarization: {e}")
         return None
 
 

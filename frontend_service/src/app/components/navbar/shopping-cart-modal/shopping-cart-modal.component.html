@@ -1,0 +1,6 @@
+<button (click)="addNewItem()">Add new item</button>
+
+<div class="item" *ngFor="let item of data; let i = index">
+    {{ item.id }}
+    <button (click)="select(item.id)">Select</button>
+</div>

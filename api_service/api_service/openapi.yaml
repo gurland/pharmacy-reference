@@ -452,7 +452,7 @@ paths:
               type: object
               properties:
                 drugId:
-                  type: integer
+                  type: string
               example:
                 drugId: 6BEC590E29B0BDD1C22585FC00264396
 

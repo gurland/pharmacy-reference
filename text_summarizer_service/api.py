@@ -69,6 +69,7 @@ class SummaryAPI:
 
         if response.status_code == 200:
             self = self.from_json(response.text)
+            logger.info(f"update after send_meta: {self}")
             return self
         else:
             return None
@@ -86,6 +87,7 @@ class SummaryAPI:
 
         if response.status_code == 200:
             self = self.from_json(response.text)
+            logger.info(f"update after send_text: {self}")
             return self
         else:
             return None

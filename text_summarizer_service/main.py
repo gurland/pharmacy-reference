@@ -2,7 +2,7 @@ import redis
 import json
 from pubmed import get_abstracts_by_multiple_ids
 from settings import logger, REDIS_HOST, REDIS_PORT, REDIS_DB
-from summarizer import initialize_model, get_summarization
+from summarizer import get_summarization
 from pubmed import get_articles_id_from_term, get_abstracts_by_multiple_ids
 from api import SummaryAPI
 

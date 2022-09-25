@@ -5,6 +5,7 @@ import { ItemsService } from 'src/app/services/items.service';
 import { Router } from '@angular/router'
 import { SearchModalComponent } from './search-modal/search-modal.component';
 import { ShoppingCartModalComponent } from './shopping-cart-modal/shopping-cart-modal.component';
+import jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ import { ShoppingCartModalComponent } from './shopping-cart-modal/shopping-cart-
 export class NavbarComponent implements OnInit {
 
   searchInput = '';
+  user;
 
   constructor(
     private readonly searchDialog: MatDialog,
@@ -22,6 +24,10 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('accessToken')) {
+      this.user = jwtDecode(localStorage.getItem('accessToken'));
+
+    }
     this.itemsService.getShoppingList().subscribe((count: any) => this.itemsService.currentShoppingList = count.length);
   }
 

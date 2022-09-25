@@ -11,7 +11,7 @@ export class ShoppingCartModalComponent implements OnInit {
   shoppingListCount = 0;
 
   constructor(
-    private readonly itemsService: ItemsService
+    public readonly itemsService: ItemsService
   ) { }
 
   ngOnInit(): void {

@@ -16,9 +16,13 @@
     [src]="item?.fileUrl"
     [render-text]="true"
     [original-size]="false"
-    style="width: 100%; height: 500px"
+    class="pdf"
 ></pdf-viewer>
 
-<div *ngIf="fileView === 'mth'">
+<div *ngIf="fileView === 'mth'" class="panel">
     <div class="panel-body" [innerHtml]="item?.fileUrl"></div>
+</div>
+
+<div *ngIf="!fileView" class="no-instruction">
+    <label>Інструкція відсутня</label>
 </div>

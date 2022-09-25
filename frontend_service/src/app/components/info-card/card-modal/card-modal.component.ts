@@ -41,6 +41,7 @@ export class CardModalComponent implements OnInit {
         });
       }
     }
+    console.log(this.item.fileUrl);
   }
 
   ngOnInit(): void {
@@ -49,5 +50,8 @@ export class CardModalComponent implements OnInit {
   ngAfterViewInit(): void {
     const container = this._document.querySelectorAll('.cdk-global-overlay-wrapper')[0];
     container.classList.add('card-info-overlay');
+  }
+  cutDocument(): void {
+
   }
 }

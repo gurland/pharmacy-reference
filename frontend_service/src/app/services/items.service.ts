@@ -41,4 +41,8 @@ export class ItemsService {
   getSummary(model) {
     return this.http.post('summarizations', model);
   }
+
+  watchSummary(id) {
+    return this.http.get('summarizations/'+id+'/');
+  }
 }

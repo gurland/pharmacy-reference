@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import jwtDecode from 'jwt-decode';
+import { expand } from 'rxjs';
 import { ItemsService } from 'src/app/services/items.service';
 
 @Component({
@@ -57,12 +58,30 @@ export class CardModalComponent implements OnInit {
     console.log(user);
     const model = {
       drugId: this.item.id,
-      id: user.id,
-      paperCount: 300,
-      text: "Amoxicillin and beta-lactamase inhibitor is good."
+      term: this.item.generic_name
     }
-    this.itemsService.getSummary(model).subscribe(res => {
-      console.log(res);
+    this.itemsService.getSummary(model).subscribe((res: any) => {
+      this.item.summarization = {
+        text: '',
+        paperCount: null
+      }
+      this.watchSummary(res.id);
     })
+  }
+
+  private watchSummary(id) {
+    this.itemsService.watchSummary(id).subscribe((x: any) => {
+      if (x?.text) {
+        this.item.summarization.text = x.text;
+      } else {
+        if (x?.paperCount) {
+          this.item.summarization.paperCount = x.paperCount;
+        }
+
+        setTimeout(() => {
+          this.watchSummary(id);
+        }, 1000);
+      }
+    });
   }
 }

@@ -374,7 +374,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ShoppingList'
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "My List"
 
       responses:
         "200":

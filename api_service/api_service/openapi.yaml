@@ -315,6 +315,14 @@ paths:
                 message: Wrong Auth credentials
 
   "/summarizations/{summarizationId}/":
+    parameters:
+      - in: path
+        name: shoppingListId
+        required: true
+        description: Shopping List ID
+        schema:
+          type: integer
+
     get:
       tags:
         - Summarizations

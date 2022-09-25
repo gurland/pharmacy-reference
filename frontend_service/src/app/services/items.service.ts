@@ -7,14 +7,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ItemsService {
 
-  readonly itemsList = new BehaviorSubject([] as any); 
+  readonly itemsList = new BehaviorSubject([] as any);
+  currentShoppingList = 0;
 
   constructor(
     private readonly http: HttpClient
   ) { }
 
   getItems(query) {
-    return this.http.get('/drugs', { params: { term: query } } )
+    return this.http.get('drugs', { params: { term: query } } )
   }
 
   getItemFile(url: string) {
@@ -23,5 +24,21 @@ export class ItemsService {
 
   getMht(url: string) {
     return this.http.post("mht/", {url: url});
+  }
+
+  createShoppingList() {
+    return this.http.post(`shopping_lists`, {});
+  }
+
+  addToShoppingList(id, model) {
+    return this.http.post(`shopping_lists/${id}/drugs`, model);
+  }
+
+  getShoppingList() {
+    return this.http.get('shopping_lists');
+  }
+
+  getSummary(model) {
+    return this.http.post('summarizations', model);
   }
 }

@@ -1,30 +1,10 @@
 import redis
 import json
-import requests
 from pubmed import get_abstracts_by_multiple_ids
-from settings import logger, REDIS_HOST, REDIS_PORT, REDIS_DB, SUMMARY_URL
+from settings import logger, REDIS_HOST, REDIS_PORT, REDIS_DB
 from summarizer import initialize_model, get_summarization
 from pubmed import get_articles_id_from_term, get_abstracts_by_multiple_ids
-
-
-def send_response(id: str, summary: str, paper_count: int):
-    """
-    Send response to API
-    """
-
-    logger.debug(f"sending requets to {SUMMARY_URL}")
-
-    data = {"drugId": id, "paperCount": paper_count, "text": summary}
-    try:
-        response = requests.post(url=SUMMARY_URL, json=data)
-        logger.debug(f"send response with body: {data}")
-
-        if response.status_code == 200:
-            logger.debug("response sending status: success")
-        else:
-            logger.debug(f"response sending status: failed ({response.status_code})")
-    except Exception as e:
-        logger.error(f"failed to send request to {SUMMARY_URL}: {e}")
+from api import SummaryAPI
 
 
 def main():
@@ -35,16 +15,21 @@ def main():
     # read values from redis
     while True:
         req = rd.brpop("summarization_tasks")
-        if req == None:
+        if req is None:
             logger.debug("got None from redis")
             continue
 
         req = json.loads(req[1].decode())
-        logger.debug(f"id = {req['id']}, term = {req['term']}")
+        term = req["term"]
+        id = req["id"]
+        logger.debug(f"drug_id = {id}, term = {term}")
 
-        id_list, paper_count = get_articles_id_from_term(req["term"])
+        summary = SummaryAPI()
+        summary.db_id = id
+
+        id_list, paper_count = get_articles_id_from_term(term)
         if id_list is None:
-            logger.error(f"get_articles_id_from_term({req['term']}) returned empty result")
+            logger.error(f"get_articles_id_from_term({term}) returned empty result")
             # TBD: probably send error to API?
             continue
 
@@ -54,13 +39,20 @@ def main():
             # TBD: probably send error to API?
             continue
 
-        # TODO: send paper_count to /api/summarizations/meta
-        logger.debug(f"paper_count = {paper_count}")
+        if summary.send_meta(int(paper_count)) is None:
+            logger.error(f"failed to update summary metadata (id = {summary.db_id})")
+            continue
 
-        summary = get_summarization(abstracts_list[0])
-        logger.debug(f"summary = {summary}")
+        text = get_summarization(abstracts_list[0])
+        if text is None:
+            logger.error(f"failed to generate summarization")
+            continue
+            
+        logger.debug(f"summary = {text}")
 
-        send_response(req['id'], summary, 42)
+        if summary.send_text(text) is None:
+            logger.error(f"failed to update summary text (id = {summary.db_id}")
+            continue
 
 
 if __name__ == "__main__":

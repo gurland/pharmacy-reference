@@ -3,13 +3,16 @@
 </div>
 
 <div class="info-wrap">
-    <div class="info-item">Info</div>
-    <input type="text" placeholder="Search" (change)="search($event)">
+    <input type="text" id="search" placeholder="Search" (change)="search($event)">
     <!-- <div class="search" (click)="openSearchModal()">
         <button>
             <mat-icon>search</mat-icon>
         </button>
     </div> -->
+    <button (click)="shoppingCart()">
+        <mat-icon>shopping_cart</mat-icon>
+    </button>
+  
     <div class="profile">
         <a [routerLink]="'/profile'">
             <mat-icon>person</mat-icon>

@@ -14,8 +14,7 @@
     background-color: $purple_2;
     border-radius: 10px;
     box-shadow: initial;
-    height: 300px;
-
+    height: 370px;
     
     .mat-icon {
       height: 65px;
@@ -27,8 +26,10 @@
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      height: 65px;
+      height: 200px;
+      align-items: center;
       margin-bottom: 1rem;
+      overflow: auto;
     }
 
     .mat-card-content {
@@ -57,6 +58,7 @@
       button {
         color: $purple;
         font-size: 17px;
+        margin-right: 10px;
       }
     }
   }

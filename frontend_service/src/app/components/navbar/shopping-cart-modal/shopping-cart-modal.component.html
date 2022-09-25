@@ -1,6 +1,10 @@
-<button (click)="addNewItem()">Add new item</button>
+<div class="column">
+    <div class="row around">
+        <button id="add" (click)="addNewItem()">Add new item</button>
+    </div>
 
-<div class="item" *ngFor="let item of data; let i = index">
-    {{ item.id }}
-    <button (click)="select(item.id)">Select</button>
+    <div class="item row" *ngFor="let item of data; let i = index">
+        <label>{{ item.id }}</label>
+        <button (click)="select(item.id)" class="selectButton">Select</button>
+    </div>
 </div>
